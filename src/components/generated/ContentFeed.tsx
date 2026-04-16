@@ -4777,7 +4777,7 @@ export const ContentFeed = ({
                 }
               }}>
                     <span className="text-[14px] shrink-0">{LIVE_COMMENT_TICKS[liveTickIdx].flag}</span>
-                    <span className="text-[12px] font-bold text-pink-500 shrink-0">@{LIVE_COMMENT_TICKS[liveTickIdx].user}</span>
+                    <span className="text-[12px] font-bold text-pink-500 shrink-0">{LIVE_COMMENT_TICKS[liveTickIdx].user}</span>
                     <span className="text-[12px] text-gray-700 leading-snug truncate">{LIVE_COMMENT_TICKS[liveTickIdx].text[lang]}</span>
                     <ChevronRight size={11} className="text-gray-300 shrink-0" />
                   </motion.button>
@@ -5068,11 +5068,6 @@ export const ContentFeed = ({
                   </div>
                 </div>
                 <p className="text-[12px] text-white/80 leading-relaxed mb-4">{profileData.bio}</p>
-                <div className="flex items-center gap-5 text-white">
-                  <div className="flex flex-col items-center"><span className="text-[16px] font-black">248</span><span className="text-[10px] text-white/60 font-medium">{t(lang, 'followers')}</span></div>
-                  <div className="flex flex-col items-center"><span className="text-[16px] font-black">91</span><span className="text-[10px] text-white/60 font-medium">{t(lang, 'following')}</span></div>
-                  <div className="flex flex-col items-center"><span className="text-[16px] font-black">17</span><span className="text-[10px] text-white/60 font-medium">{t(lang, 'posts')}</span></div>
-                </div>
               </div>
               <div className="-mt-5 mx-4 bg-white rounded-2xl shadow-lg overflow-hidden mb-3">
                 <div className="flex">
