@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft } from 'lucide-react';
 import { ContentFeed } from './ContentFeed';
@@ -10,6 +10,7 @@ export const KWaveApp = ({
   onBack,
   initialArticleId
 }: KWaveAppProps) => {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   return <div className="flex flex-col min-h-screen bg-[#f7f7f8]" style={{
     overscrollBehavior: 'contain'
   }}>
@@ -39,8 +40,8 @@ export const KWaveApp = ({
       </AnimatePresence>
 
       {/* Main app content */}
-      <div className="flex-1 overflow-y-auto overscroll-contain">
-        <ContentFeed initialArticleId={initialArticleId} />
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto overscroll-contain">
+        <ContentFeed initialArticleId={initialArticleId} scrollContainerRef={scrollContainerRef} />
       </div>
     </div>;
 };

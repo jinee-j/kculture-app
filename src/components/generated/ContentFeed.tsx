@@ -154,7 +154,7 @@ const I18N: I18nMap = {
     handle: '핸들',
     bio: '소개',
     country: '국가',
-    changePhoto: '사진 변경',
+    changePhoto: '이미지 변경',
     editProfileTitle: '프로필 편집',
     settingsTitle: '설정',
     notificationSettings: '알림 설정',
@@ -235,7 +235,7 @@ const I18N: I18nMap = {
     handle: 'Handle',
     bio: 'Bio',
     country: 'Country',
-    changePhoto: 'Change Photo',
+    changePhoto: 'Change Image',
     editProfileTitle: 'Edit Profile',
     settingsTitle: 'Settings',
     notificationSettings: 'Notifications',
@@ -316,7 +316,7 @@ const I18N: I18nMap = {
     handle: 'ハンドル',
     bio: '自己紹介',
     country: '国',
-    changePhoto: '写真を変更',
+    changePhoto: '画像を変更',
     editProfileTitle: 'プロフィール編集',
     settingsTitle: '設定',
     notificationSettings: '通知設定',
@@ -3206,13 +3206,9 @@ const REACTION_CATEGORIES: ReactionCategory[] = [{
   label: '표정',
   emojis: ['😊', '😆', '🥳', '😤', '😱', '🤩', '🥰', '😎', '🤔', '😮']
 }, {
-  id: 'heart',
-  label: '하트',
-  emojis: ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '💕', '💗']
-}, {
-  id: 'kwave',
-  label: 'K-웨이브',
-  emojis: ['🎵', '🎤', '🎬', '🌊', '🌸', '⭐', '👑', '🏆', '🎭', '🎧']
+  id: 'etc',
+  label: '기타',
+  emojis: ['🎵', '🎤', '🎬', '🌊', '🌸', '⭐', '👑', '🏆', '🎭', '🎧', '❤️', '🧡', '💛', '💚', '💙', '🖤', '🤍', '💕', '💗', '🌈']
 }];
 
 // --- Helpers ---
@@ -3279,9 +3275,11 @@ const DetailHeader = ({
 
 // --- Main Component ---
 export const ContentFeed = ({
-  initialArticleId
+  initialArticleId,
+  scrollContainerRef
 }: {
   initialArticleId?: string;
+  scrollContainerRef?: React.RefObject<HTMLDivElement | null>;
 }) => {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [lang, setLang] = useState<Lang>('ko');
@@ -3320,7 +3318,7 @@ export const ContentFeed = ({
     handle: 'jiny_j',
     bio: '🌊 K-컬처 전도사 | K-POP & K-드라마 광팬 | 아미 7년차',
     country: 'kr',
-    avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop'
+    avatar: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=200&h=200&fit=crop'
   });
   const [editDraft, setEditDraft] = useState<ProfileData>(profileData);
   const [showEmojiAvatarPicker, setShowEmojiAvatarPicker] = useState(false);
@@ -3366,6 +3364,20 @@ export const ContentFeed = ({
       setFeaturedBannerIndex(prev => (prev + 1) % FEATURED_BANNERS.length);
     }, 4500);
   };
+
+  // Scroll to top when entering article detail
+  useEffect(() => {
+    if (selectedArticle && scrollContainerRef?.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [selectedArticle]);
+
+  // Scroll to top when entering thread detail
+  useEffect(() => {
+    if (selectedThread && scrollContainerRef?.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [selectedThread]);
 
   // Determine if we're in a detail view — hide main header and bottom nav accordingly
   const isDetailView = !!selectedArticle || activeTab === 'community' && !!selectedThread;
@@ -3573,26 +3585,6 @@ export const ContentFeed = ({
               }
             }} className="text-[13px] font-bold text-pink-500 shrink-0 px-1 py-1 hover:text-pink-600 transition-colors">{t(lang, 'back')}</button>
               </div>
-              <AnimatePresence>
-                {searchQuery.trim() && searchFilteredArticles.length > 0 && <motion.div initial={{
-              opacity: 0,
-              height: 0
-            }} animate={{
-              opacity: 1,
-              height: 'auto'
-            }} exit={{
-              opacity: 0,
-              height: 0
-            }} transition={{
-              duration: 0.15
-            }} className="flex gap-2 px-4 pb-3 overflow-x-auto" style={{
-              scrollbarWidth: 'none'
-            }}>
-                    {CATEGORY_CHIPS.map(chip => <button key={chip.id} onClick={() => setActiveChip(chip.id)} className={`shrink-0 px-3.5 py-1.5 rounded-full text-[11px] font-bold transition-all border ${activeChip === chip.id ? 'bg-gray-900 text-white border-gray-900' : 'bg-white text-gray-500 border-gray-200 hover:border-gray-300'}`}>
-                        {chip.label[lang]}
-                      </button>)}
-                  </motion.div>}
-              </AnimatePresence>
             </div>
 
             <div className="flex-1 overflow-y-auto">
@@ -3925,7 +3917,7 @@ export const ContentFeed = ({
               <div className="flex flex-col items-center pt-8 pb-5 border-b border-gray-100 bg-gradient-to-b from-gray-50 to-white">
                 <div className="relative mb-3">
                   <div className="w-20 h-20 rounded-full border-4 border-white overflow-hidden bg-gradient-to-br from-pink-300 to-violet-400 flex items-center justify-center shadow-lg">
-                    {editDraft.avatar && !editDraft.avatar.startsWith('emoji:') ? <img src={editDraft.avatar} alt="Profile avatar" className="w-full h-full object-cover" /> : editDraft.avatar && editDraft.avatar.startsWith('emoji:') ? <span className="text-4xl leading-none">{editDraft.avatar.replace('emoji:', '')}</span> : <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop" alt="Profile avatar" className="w-full h-full object-cover" />}
+                    {editDraft.avatar && !editDraft.avatar.startsWith('emoji:') ? <img src={editDraft.avatar} alt="Profile avatar" className="w-full h-full object-cover" /> : editDraft.avatar && editDraft.avatar.startsWith('emoji:') ? <span className="text-4xl leading-none">{editDraft.avatar.replace('emoji:', '')}</span> : <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=200&h=200&fit=crop" alt="Profile avatar" className="w-full h-full object-cover" />}
                   </div>
                   <label className="absolute bottom-0 right-0 w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center border-2 border-white shadow cursor-pointer">
                     <Camera size={14} className="text-white" />
@@ -3942,7 +3934,12 @@ export const ContentFeed = ({
                 }} />
                   </label>
                 </div>
-                <button onClick={() => setShowEmojiAvatarPicker(v => !v)} className="text-[13px] font-semibold text-pink-500 hover:text-pink-600 transition-colors">{t(lang, 'changePhoto')}</button>
+                <div className="flex items-center justify-center mt-1">
+                  <button onClick={() => setShowEmojiAvatarPicker(v => !v)} className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-[12px] font-semibold transition-colors ${showEmojiAvatarPicker ? 'border-pink-300 bg-pink-50 text-pink-600' : 'border-gray-200 bg-gray-50 hover:bg-pink-50 hover:border-pink-200 text-gray-600 hover:text-pink-600'}`}>
+                    <span className="text-[13px]">🐾</span>
+                    <span>{lang === 'ko' ? '기본 아바타로 변경' : lang === 'ja' ? 'デフォルトアバターに変更' : lang === 'vi' ? 'Đổi avatar mặc định' : 'Default Avatar'}</span>
+                  </button>
+                </div>
                 <AnimatePresence>
                   {showEmojiAvatarPicker && <motion.div initial={{
                 opacity: 0,
@@ -4128,7 +4125,7 @@ export const ContentFeed = ({
                     <div><p className="text-[13px] font-semibold text-gray-800">{t(lang, 'kbot')}</p><p className="text-[11px] text-gray-400 mt-0.5">{t(lang, 'kbotSubtitle')}</p></div>
                     <div className="flex items-center gap-1.5 ml-auto"><span className="w-1.5 h-1.5 bg-green-400 rounded-full" /><ChevronRight size={15} className="text-gray-300" /></div>
                   </button>
-                  <div className="flex items-center justify-between px-4 py-4 border-b border-gray-50">
+                  <div className="flex items-center justify-between px-4 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center shrink-0"><Smartphone size={16} className="text-gray-500" /></div>
                       <div><p className="text-[13px] font-semibold text-gray-800">{t(lang, 'appVersion')}</p><p className="text-[11px] text-gray-400 mt-0.5">v2.4.1</p></div>
@@ -4390,13 +4387,6 @@ export const ContentFeed = ({
                                 <span>{article.timeAgo[lang]}</span>
                               </div>
                               <div className="ml-auto flex items-center gap-2.5 text-gray-300">
-                                <button onClick={e => {
-                        e.stopPropagation();
-                        toggleLikeArticle(article.id);
-                      }} className={`flex items-center gap-1 transition-colors ${likedArticles.has(article.id) ? 'text-red-500' : 'hover:text-red-400'}`}>
-                                  <Heart size={13} className={likedArticles.has(article.id) ? 'fill-red-500' : ''} />
-                                  <span className="text-[10px]">{article.likes + (likedArticles.has(article.id) ? 1 : 0)}</span>
-                                </button>
                                 <button onClick={e => {
                         e.stopPropagation();
                         toggleBookmark(article.id);
@@ -4985,7 +4975,7 @@ export const ContentFeed = ({
                     <div className="w-16 h-16 rounded-full border-3 border-white/40 overflow-hidden shadow-lg">
                       {profileData.avatar && profileData.avatar.startsWith('emoji:') ? <div className="w-full h-full bg-gradient-to-br from-pink-300 to-violet-400 flex items-center justify-center">
                           <span className="text-3xl leading-none">{profileData.avatar.replace('emoji:', '')}</span>
-                        </div> : <img src={profileData.avatar || 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200&h=200&fit=crop'} alt="Profile" className="w-full h-full object-cover" />}
+                        </div> : <img src={profileData.avatar || 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=200&h=200&fit=crop'} alt="Profile" className="w-full h-full object-cover" />}
                     </div>
                     <div>
                       <h2 className="text-[18px] font-black text-white leading-tight">{profileData.name}</h2>
