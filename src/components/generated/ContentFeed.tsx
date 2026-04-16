@@ -15,7 +15,7 @@ type Article = {
   categoryBg: string;
   title: Record<Lang, string>;
   body: Record<Lang, string[]>;
-  source: string;
+  source: Record<Lang, string>;
   timeAgo: Record<Lang, string>;
   image: string;
   likes: number;
@@ -604,7 +604,7 @@ const COUNTRY_OPTIONS: {
 const HOT_NEWS_LIST: {
   id: string;
   title: Record<Lang, string>;
-  source: string;
+  source: Record<Lang, string>;
   image: string;
   articleId: string;
 }[] = [{
@@ -615,7 +615,12 @@ const HOT_NEWS_LIST: {
     ja: 'BTS SUGA除隊後初の公式活動、ソロプロジェクトが下半期に確定',
     vi: 'Suga BTS tái xuất sau nghĩa vụ quân sự — Dự án solo xác nhận nửa cuối năm'
   },
-  source: '한국경제',
+  source: {
+    ko: '한국경제',
+    en: 'Korea Economic Daily',
+    ja: '韓国経済新聞',
+    vi: 'Korea Economic Daily'
+  },
   image: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&h=200&fit=crop',
   articleId: 'a1'
 }, {
@@ -626,7 +631,12 @@ const HOT_NEWS_LIST: {
     ja: 'Netflixオリジナル韓国版「嵐の丘」が公開3日でグローバルTOP10入り',
     vi: '"Đồi Bão Tố" bản Hàn của Netflix lọt Top 10 toàn cầu chỉ sau 3 ngày'
   },
-  source: '조선일보',
+  source: {
+    ko: '조선일보',
+    en: 'Chosun Ilbo',
+    ja: '朝鮮日報',
+    vi: 'Chosun Ilbo'
+  },
   image: 'https://images.unsplash.com/photo-1616530940355-351fabd9524b?w=200&h=200&fit=crop',
   articleId: 'a2'
 }, {
@@ -637,7 +647,12 @@ const HOT_NEWS_LIST: {
     ja: 'BLACKPINKジェニー、ソロ2ndアルバムタイトル曲をスポイル、SNSで世界的反応',
     vi: 'Jennie BLACKPINK hé lộ ca khúc chủ đề album solo 2 — Phản ứng toàn cầu bùng nổ trên SNS'
   },
-  source: '매일경제',
+  source: {
+    ko: '매일경제',
+    en: 'Maeil Business Newspaper',
+    ja: '毎日経済新聞',
+    vi: 'Maeil Business Newspaper'
+  },
   image: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?w=200&h=200&fit=crop',
   articleId: 'a5'
 }, {
@@ -648,7 +663,12 @@ const HOT_NEWS_LIST: {
     ja: 'IVEのワールドツアーが完売、米国5都市の追加公演が確定',
     vi: 'World tour của IVE cháy vé — Thêm 5 thành phố tại Mỹ'
   },
-  source: 'MBC',
+  source: {
+    ko: 'MBC',
+    en: 'MBC',
+    ja: 'MBC',
+    vi: 'MBC'
+  },
   image: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=200&h=200&fit=crop',
   articleId: 'a7'
 }, {
@@ -659,7 +679,12 @@ const HOT_NEWS_LIST: {
     ja: '韓国ラーメンが欧州輸出過去最高を記録、ブルダック・辛ラーメンが専用コーナーを設置',
     vi: 'Mì Hàn Quốc phá kỷ lục xuất khẩu châu Âu — Buldak & Shin Ramen có góc riêng tại siêu thị'
   },
-  source: '중앙일보',
+  source: {
+    ko: '중앙일보',
+    en: 'JoongAng Ilbo',
+    ja: '中央日報',
+    vi: 'JoongAng Ilbo'
+  },
   image: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=200&h=200&fit=crop',
   articleId: 'a3'
 }];
@@ -740,7 +765,12 @@ const ARTICLES: Article[] = [{
     ja: ['BTSのSUGA（本名：ミン・ユンギ）が2024年6月に兵役を終え除隊し、今年下半期のソロプロジェクトが公式確定した。HYBEは公式声明で「SUGAのカムバックに関する詳細は追って公開する」と述べた。', 'グローバルファンダムARMYはSNS全体で熱狂的な歓迎メッセージを送った。X（旧Twitter）では「SUGA IS BACK」が世界トレンド1位を記録し、YouTubeライブストリーミングには同時接続者200万人が殺到した。', '業界関係者は「Agust Dソロシリーズが世界的に高い評価を受けているだけに、新アルバムへの期待値は非常に高い。ヒップホップと内省的なポップを融合した独自のスタイルをさらに深化させると予想される」と語った。', 'SUGA は兵役中もファンとの交流を続け、除隊直後のInstagramライブで「長い間待ってくれてありがとう。良い音楽でお返しします」というメッセージを残し、ファンの熱狂的な反響を呼んだ。'],
     vi: ['Thành viên Suga của BTS (tên thật Min Yoongi) đã hoàn thành nghĩa vụ quân sự vào tháng 6/2024, và dự án solo trong nửa cuối năm nay đã được chính thức xác nhận. HYBE cho biết trong tuyên bố chính thức: "Chi tiết về sự trở lại của Suga sẽ được tiết lộ sau."', 'Fandom ARMY toàn cầu nổ ra trên khắp mạng xã hội. "SUGA IS BACK" lên xu hướng số 1 toàn cầu trên X (trước đây là Twitter), trong khi livestream YouTube thu hút hơn 2 triệu người xem đồng thời.', 'Một người trong ngành nhận xét: "Với sự thành công toàn cầu của series solo Agust D, kỳ vọng vào album mới cực kỳ cao. Anh ấy được dự đoán sẽ đào sâu hơn vào phong cách pha trộn hip-hop và pop nội tâm đặc trưng của mình."', 'Trong suốt thời gian quân ngũ, Suga vẫn duy trì kết nối với người hâm mộ, và trong một buổi Instagram Live ngay sau xuất ngũ, anh chia sẻ: "Cảm ơn đã chờ đợi lâu như vậy. Tôi sẽ đền đáp bằng âm nhạc tuyệt vời."']
   },
-  source: '한국경제',
+  source: {
+    ko: '한국경제',
+    en: 'Korea Economic Daily',
+    ja: '韓国経済新聞',
+    vi: 'Korea Economic Daily'
+  },
   timeAgo: {
     ko: '1시간 전',
     en: '1h ago',
@@ -769,7 +799,12 @@ const ARTICLES: Article[] = [{
     ja: ['Netflixオリジナル韓国ドラマ「嵐の丘」が公開3日でグローバルTOP10に入り、韓国ドラマの底力を改めて証明した。エミリー・ブロンテの同名原作小説を韓国的感性で再解釈したこの作品は、15か国のチャートで同時に上位にランクインした。', '演出を担当したパク・ジフン監督は「原作の嵐のような感情の流れはそのままに、韓国の情緒と季節感を加えて全く新しい世界を作りたかった」と語った。主演のイ・スアとチョン・ウソンがそれぞれキャサリンとヒースクリフを韓国式に再解釈し、批評家から絶賛を受けた。', 'OSTも話題を呼んでいる。1話エンディングに挿入されたバラード曲は公開12時間でメロンリアルタイムチャート1位に輝き、K-ドラマOSTの力を改めて証明した。専門評論家たちは「2020年代のK-ドラマの新たな基準点になるだろう」と評価している。', 'Netflixコリアは「すでにシーズン2の制作協議が進行中」と明かし、ファンの期待を高めている。海外映画祭からもラブコールが続いており、ベルリン国際映画祭への出品が有力とされている。'],
     vi: ['Bộ phim gốc Hàn Quốc của Netflix "Đồi Bão Tố" đã vào Top 10 toàn cầu chỉ trong ba ngày kể từ khi phát hành, một lần nữa chứng minh sức mạnh bền bỉ của phim Hàn. Tác phẩm tái diễn giải theo phong cách Hàn Quốc tiểu thuyết kinh điển của Emily Brontë đồng thời xếp hạng cao tại 15 quốc gia.', 'Đạo diễn Park Ji-hun cho biết: "Tôi muốn giữ nguyên cốt lõi cảm xúc dữ dội của nguyên tác trong khi khoác lên nó cảm thức Hàn Quốc và hương vị các mùa — tạo ra một thế giới hoàn toàn mới." Các diễn viên chính Lee Sua và Jung Woo-sung được giới phê bình khen ngợi vì cách diễn giải theo phong cách Hàn đối với các nhân vật Cathy và Heathcliff.', 'OST cũng tạo ra tiếng vang lớn. Bản ballad ở cuối tập 1 đã leo lên đỉnh bảng xếp hạng thời gian thực của Melon chỉ trong 12 giờ, một lần nữa chứng tỏ sức mạnh của nhạc phim K-drama. Các nhà phê bình gọi đây là "tiêu chuẩn mới của K-drama trong thập kỷ 2020."', 'Netflix Korea đã gợi ý rằng các cuộc thảo luận về mùa 2 đang được tiến hành. Các liên hoan phim quốc tế cũng đang liên hệ, với việc gửi phim dự Liên hoan Phim Quốc tế Berlin được coi là rất có khả năng.']
   },
-  source: '조선일보',
+  source: {
+    ko: '조선일보',
+    en: 'Chosun Ilbo',
+    ja: '朝鮮日報',
+    vi: 'Chosun Ilbo'
+  },
   timeAgo: {
     ko: '3시간 전',
     en: '3h ago',
@@ -797,7 +832,12 @@ const ARTICLES: Article[] = [{
     ja: ['韓国農水産食品流通公社（aT）が発表した最新統計によると、2024年第1四半期の韓国ラーメンの欧州輸出額が前年同期比47.3%急増し、過去最高を更新した。プルダック炒め麺と辛ラーメンがこの成長を牽引しており、特にフランス・ドイツ・イギリスでの販売増加が目立つ。', 'フランス・パリの大手スーパーチェーンのカルフールは先月から「K-ヌードルゾーン」を新設した。担当バイヤーは「韓国ラーメンはアジア食品コーナーを超えて主流食品コーナーに進出する段階に来た」と述べ、「特に20〜30代の欧州消費者の反応が非常に熱い」と語った。', '三養食品とノンシムは欧州現地工場設立も検討中だ。三養食品関係者は「現在の輸出量では欧州の需要に応えるのが困難な状況」とし、「欧州内の生産拠点設立に向けた実現可能性調査を進めている」と明かした。', 'このK-フードブームの背景には、YouTubeやTikTokなどのSNSを通じた韓国食品コンテンツの爆発的な拡散がある。プルダック炒め麺チャレンジはTikTokで累計80億ビューを超え、現地インフルエンサーによる韓国料理挑戦動画が毎月数千件投稿されている。'],
     vi: ['Theo số liệu mới nhất từ Tổng công ty Phân phối Nông thủy sản Thực phẩm Hàn Quốc (aT), xuất khẩu mì Hàn Quốc sang châu Âu tăng vọt 47,3% so với cùng kỳ năm trước trong quý 1/2024, đạt mức kỷ lục. Mì Buldak và Shin Ramen đang thúc đẩy tăng trưởng này, với mức tăng doanh số đặc biệt mạnh tại Pháp, Đức và Anh.', 'Chuỗi siêu thị Carrefour của Pháp đã ra mắt "Góc mì K-Noodle" chuyên dụng tại các cửa hàng Paris từ tháng trước. Người mua hàng cho biết: "Mì Hàn Quốc đã vượt ra khỏi khu vực thực phẩm châu Á để trở thành sản phẩm chủ đạo. Phản ứng từ người tiêu dùng châu Âu trong độ tuổi 20-30 cực kỳ mạnh mẽ."', 'Samyang Foods và Nongshim cũng đang xem xét thiết lập cơ sở sản xuất tại châu Âu. Phát ngôn viên Samyang cho biết: "Khối lượng xuất khẩu hiện tại đang khó đáp ứng nhu cầu châu Âu" và xác nhận đang tiến hành nghiên cứu khả thi cho cơ sở sản xuất tại châu Âu.', 'Thúc đẩy làn sóng K-Food này là sự lan rộng bùng nổ của nội dung ẩm thực Hàn Quốc trên YouTube và TikTok. Thử thách mì Buldak đã vượt 8 tỷ lượt xem tích lũy trên TikTok, với hàng nghìn video thử thách nấu ăn Hàn Quốc của influencer địa phương được đăng mỗi tháng.']
   },
-  source: '중앙일보',
+  source: {
+    ko: '중앙일보',
+    en: 'JoongAng Ilbo',
+    ja: '中央日報',
+    vi: 'JoongAng Ilbo'
+  },
   timeAgo: {
     ko: '6시간 전',
     en: '6h ago',
@@ -825,7 +865,12 @@ const ARTICLES: Article[] = [{
     ja: ['世界最大のビューティー見本市コスモプロフで、K-ビューティーが再び注目を集めた。ガラス肌とジェリー肌トレンドを先導する韓国ブランドが欧州・北米バイヤーから爆発的な反響を得て、K-ビューティーのグローバル支配力を再確認した。', 'アモレパーシックとLG生活健康は、それぞれプレミアム光沢セラムラインを発表し、会場だけで数百億ウォンの輸出契約を締結したとされる。特に「サンスクリーン・サンクリーム」の超軽量テクスチャーと高いSPFが海外消費者から大きな反響を呼んだ。', '米セフォラとアルタビューティーは今年、K-ビューティー専用セクションを大幅に拡充する計画を発表した。アルタの担当者は「K-ビューティー商品は当店でスキンケアカテゴリー全体の中で最も速い成長を見せている」とし、「今後5年でK-ビューティーセクションを3倍以上に拡大する」と述べた。', 'ビューティー専門分析機関BEAUTYDATAは「2024年の世界スキンケア市場における韓国製品のシェアが初めて15%を突破する見込み」と予測した。これは5年前（2019年）の2倍以上の数字だ。'],
     vi: ['K-Beauty một lần nữa thu hút sự chú ý tại Cosmoprof, hội chợ làm đẹp lớn nhất thế giới. Các thương hiệu Hàn Quốc dẫn đầu xu hướng Da Thủy Tinh và Da Thạch nhận được phản ứng bùng nổ từ các khách mua hàng châu Âu và Bắc Mỹ, tái khẳng định sự thống trị toàn cầu của K-Beauty.', 'AmorePacific và LG Household & Health Care được cho là đã ký kết các hợp đồng xuất khẩu trị giá hàng trăm tỷ won ngay tại hội chợ khi ra mắt các dòng serum ánh sáng cao cấp. Đặc biệt, kết cấu siêu nhẹ và chỉ số SPF cao của kem chống nắng Hàn Quốc đã nhận được sự nhiệt tình lớn từ người tiêu dùng nước ngoài.', 'Các nhà bán lẻ Mỹ Sephora và Ulta Beauty đều thông báo kế hoạch mở rộng đáng kể khu vực K-Beauty dành riêng trong năm nay. Đại diện Ulta cho biết: "Sản phẩm K-Beauty đang cho thấy mức tăng trưởng nhanh nhất trong bất kỳ danh mục chăm sóc da nào tại cửa hàng của chúng tôi," và họ có kế hoạch tăng gấp ba khu vực K-Beauty trong năm năm tới.', 'Công ty phân tích làm đẹp BEAUTYDATA dự báo "Sản phẩm Hàn Quốc sẽ vượt 15% thị phần trong thị trường chăm sóc da toàn cầu lần đầu tiên vào năm 2024" — cao hơn gấp đôi so với năm năm trước vào năm 2019.']
   },
-  source: '동아일보',
+  source: {
+    ko: '동아일보',
+    en: 'Dong-A Ilbo',
+    ja: '東亜日報',
+    vi: 'Dong-A Ilbo'
+  },
   timeAgo: {
     ko: '12시간 전',
     en: '12h ago',
@@ -853,7 +898,12 @@ const ARTICLES: Article[] = [{
     ja: ['BLACKPINKのジェニーが自身のInstagramにソロ2ndアルバムのタイトル曲の一部をスポイルし、世界中のファンを興奮させた。15秒ほどの短いクリップだったが、投稿から6時間で「いいね」が2500万件を突破した。新アルバムはイギリスの世界的プロデューサー、マーク・ロンソンとのコラボ作品として知られている。', '公開されたクリップでは、トレンディなポップビートにジェニー特有の独自のボーカルが乗り、前作「SOLO」とは異なる成熟したムードが感じられた。ファンは「今回は全く違うジェニーに会えそう」と反応し、期待感を表明した。', '業界ではこのソロアルバムがジェニーの独立したアーティストとしての正体性をさらに強化するとみている。YGエンターテインメント側は公式立場を自制しているが、正式発売日の公開が迫っていると伝えられる。', 'ジェニーのソロ活動は最近のハリウッドドラマ出演やグローバル高級ブランドのアンバサダー活動とも相まって、彼女のグローバルスターとしての地位をさらに確固たるものにする見通しだ。ファッション誌ヴォーグは「ジェニーは現在、世界で最も影響力のあるファッションアイコンの一人」と評価した。'],
     vi: ['Jennie của BLACKPINK đã gây hứng khởi cho người hâm mộ toàn thế giới khi hé lộ ca khúc chủ đề album solo 2 trên Instagram của mình. Dù chỉ hơn 15 giây, clip đã vượt 25 triệu lượt thích chỉ trong 6 giờ đăng tải. Album mới được cho là sự hợp tác với nhà sản xuất người Anh nổi tiếng thế giới Mark Ronson.', 'Clip tiết lộ một beat pop thịnh hành được phủ lên giọng ca thu hút đặc trưng của Jennie, gợi ý một tâm trạng trưởng thành hơn so với ca khúc solo đầu tiên "SOLO" của cô. Người hâm mộ phản ứng hào hứng: "Cảm giác như chúng ta sắp gặp một Jennie hoàn toàn khác."', 'Giới quan sát ngành tin rằng album solo này sẽ củng cố thêm bản sắc của Jennie như một nghệ sĩ độc lập. YG Entertainment vẫn giữ im lặng chính thức, nhưng thông báo ngày phát hành chính thức được hiểu là sắp đến.', 'Các hoạt động solo của Jennie đến cùng với các vai diễn trong phim Hollywood gần đây và vai trò đại sứ thương hiệu xa xỉ toàn cầu, càng củng cố thêm vị thế ngôi sao toàn cầu của cô. Tạp chí thời trang Vogue mô tả cô là "một trong những biểu tượng thời trang có ảnh hưởng nhất thế giới hiện nay."']
   },
-  source: '매일경제',
+  source: {
+    ko: '매일경제',
+    en: 'Maeil Business Newspaper',
+    ja: '毎日経済新聞',
+    vi: 'Maeil Business Newspaper'
+  },
   timeAgo: {
     ko: '2시간 전',
     en: '2h ago',
@@ -881,7 +931,12 @@ const ARTICLES: Article[] = [{
     ja: ['Netflixが「イカゲーム シーズン3」の制作を公式確定した。ファン・ドンヒョク監督は公式インタビューで「第3シーズンは真のフィナーレとなり、ファンが想像もできなかった展開と感動を届ける」と語った。', 'シーズン2で復帰したギフン（イ・ジョンジェ）の運命を中心に話が展開すると予想される。ファン監督は「シーズン3は単純なサバイバルの話を超えて、人間の本性と社会構造についてのより深い問いを投げかける」と予告した。', 'Netflixはシーズン3の制作にシーズン2比約20%増の予算を投入するとされている。撮影は2024年下半期に開始し、2025年末か2026年初の公開を目指している。', '「イカゲーム」は2021年の初公開以来、Netflixの歴代最高視聴記録を更新し、世界的な文化現象となった。エミー賞、ゴールデングローブなど主要賞での受賞を続け、韓国コンテンツの地位を大きく高めた。'],
     vi: ['Netflix đã chính thức xác nhận sản xuất Squid Game Season 3. Đạo diễn Hwang Dong-hyuk nói trong một cuộc phỏng vấn chính thức: "Mùa thứ ba sẽ là một màn chung kết thực sự, mang đến những bất ngờ và cảm xúc mà người hâm mộ chưa bao giờ có thể tưởng tượng."', 'Câu chuyện dự kiến sẽ tập trung vào số phận của Gi-hun (Lee Jung-jae), người đã trở lại trong Season 2. Đạo diễn Hwang tiết lộ: "Season 3 sẽ vượt ra ngoài câu chuyện sinh tồn đơn thuần để đặt ra những câu hỏi sâu sắc hơn về bản chất con người và cấu trúc xã hội."', 'Netflix được cho là phân bổ ngân sách nhiều hơn khoảng 20% cho Season 3 so với Season 2. Quay phim dự kiến bắt đầu vào nửa cuối năm 2024, nhắm đến phát hành cuối 2025 hoặc đầu 2026.', 'Kể từ khi ra mắt vào năm 2021, Squid Game đã lập kỷ lục xem nhiều nhất mọi thời đại của Netflix và trở thành hiện tượng văn hóa toàn cầu. Việc liên tục giành giải tại các giải thưởng lớn bao gồm Emmy và Golden Globes đã nâng cao đáng kể uy tín của nội dung Hàn Quốc trên toàn thế giới.']
   },
-  source: '연합뉴스',
+  source: {
+    ko: '연합뉴스',
+    en: 'Yonhap News Agency',
+    ja: '聯合ニュース',
+    vi: 'Yonhap News Agency'
+  },
   timeAgo: {
     ko: '5시간 전',
     en: '5h ago',
@@ -909,7 +964,12 @@ const ARTICLES: Article[] = [{
     ja: ['K-POPグループIVEが進行中の初ワールドツアー「SHOW WHAT I HAVE」の米国公演が全公演即完売となる中、現地プロモーターの要請で5都市の追加公演が確定した。米国内12都市18公演というK-POPガールズグループ歴代最多米国単独ツアー記録に挑む。', 'IVEの所属事務所スターシップエンターテインメントは「現地ファンの爆発的な需要に感謝する」と述べ、「最善を尽くして多くのファンに最高のステージを届けたい」と明かした。米国での売上だけで300億ウォンを超えると業界は見込んでいる。', 'IVEは今ツアーで新ミニアルバムの楽曲を中心にセットリストを公開し、迫力のあるパフォーマンスと華やかなセットで現地メディアから絶賛された。米国最大の音楽専門誌ローリングストーンは「K-POPの次のワールドスター」と題した特集記事を掲載した。', '今ツアーを機にIVEのグローバルファンダム「DIVE」も大きく成長している。ツアー期間中に公式SNSのフォロワー数が合計500万人以上増加し、YouTubeチャンネル登録者数も100万人を突破した。'],
     vi: ['Nhóm nhạc K-pop IVE đang trong tour diễn đầu tiên toàn thế giới \'SHOW WHAT I HAVE\' đã cháy vé toàn bộ các buổi tại Mỹ, với 5 thành phố bổ sung được xác nhận theo yêu cầu của các promoter địa phương. Nhóm hiện đang trên đà phá kỷ lục số buổi diễn solo tại Mỹ của nhóm nhạc nữ K-pop, với 18 show ở 12 thành phố.', 'Starship Entertainment cho biết: "Chúng tôi vô cùng biết ơn trước nhu cầu bùng nổ từ người hâm mộ địa phương" và "sẽ cố hết sức để mang đến màn trình diễn tốt nhất cho nhiều fan hơn." Ước tính doanh thu tại Mỹ sẽ vượt 30 tỷ KRW.', 'IVE tập trung setlist vào các bài hát từ mini-album mới nhất, nhận được đánh giá tuyệt vời từ báo chí địa phương vì màn trình diễn mạnh mẽ và sân khấu hoành tráng. Rolling Stone, ấn phẩm âm nhạc lớn nhất nước Mỹ, đã đăng bài đặc biệt với tiêu đề "Ngôi sao toàn cầu tiếp theo của K-Pop."', 'Tour diễn cũng thúc đẩy sự phát triển đáng kể của fandom toàn cầu \'DIVE\' của IVE. Tổng số người theo dõi SNS chính thức tăng hơn 5 triệu trong thời gian tour, và người đăng ký YouTube vượt 1 triệu, tiếp tục tăng trưởng nhanh chóng.']
   },
-  source: 'MBC',
+  source: {
+    ko: 'MBC',
+    en: 'MBC',
+    ja: 'MBC',
+    vi: 'MBC'
+  },
   timeAgo: {
     ko: '4시간 전',
     en: '4h ago',
@@ -937,7 +997,12 @@ const ARTICLES: Article[] = [{
     ja: ['教村チキンとbhcチキンがそれぞれニューヨークとロサンゼルスに米国初出店を同時オープンし、K-フードブームの新たな幕を開けた。両店とも初日から数百人の行列ができる光景が見られ、ソーシャルメディアでも大きな話題となった。', 'マンハッタンのタイムズスクエア近くにオープンした교촌チキンのニューヨーク1号店には、前夜から並んでいたファンがいたほどだった。現地メディアは「ニューヨークでK-POPコンサート会場のような熱気がチキン店の前に広がった」と報じた。', '韓国式フライドチキンは薄くてサクサクした衣、豊富なソースの選択肢、にんにくと醤油を使った独特の風味でアメリカの消費者を虜にしている。ニューヨーク・タイムズのフードセクションは「韓国チキンはアメリカのチキンの未来だ」というタイトルのレビューを掲載した。', '業界では、この進出を機に今後5年以内に米国全土で韓国チキンフランチャイズ100店舗時代が到来すると予測している。国内チキン業界はデリバリー文化と組み合わせた韓国独自のチキン文化がアメリカでも十分に通用するという自信を見せている。'],
     vi: ['Kyochon Chicken và bhc Chicken đồng thời khai trương cửa hàng đầu tiên tại Mỹ ở New York và Los Angeles, đánh dấu một chương mới trong làn sóng K-Food. Cả hai cửa hàng đều thu hút hàng trăm người xếp hàng ngay ngày đầu tiên, tạo ra cơn sốt lớn trên mạng xã hội.', 'Người hâm mộ đã xếp hàng qua đêm trước khi mở cửa hàng đầu tiên của Kyochon gần Times Square ở Manhattan. Báo chí địa phương đưa tin: "Nhiệt độ của một nhà hát K-pop đã xuất hiện trước một nhà hàng gà ở New York."', 'Gà rán kiểu Hàn Quốc đang chinh phục người tiêu dùng Mỹ với lớp bột mỏng giòn, nhiều lựa chọn sốt, và hương vị đặc trưng sử dụng tỏi và nước tương. Mục ẩm thực của New York Times đã đăng bài nhận xét với tiêu đề "Gà Hàn Quốc là tương lai của gà Mỹ."', 'Các chuyên gia trong ngành dự báo rằng việc thâm nhập thị trường này có thể mở ra kỷ nguyên 100 địa điểm nhượng quyền gà rán Hàn Quốc trên khắp nước Mỹ trong vòng năm năm tới. Ngành gà Hàn Quốc tự tin rằng văn hóa gà độc đáo kết hợp với văn hóa giao hàng sẽ tạo tiếng vang mạnh mẽ ở Mỹ.']
   },
-  source: '한국경제',
+  source: {
+    ko: '한국경제',
+    en: 'Korea Economic Daily',
+    ja: '韓国経済新聞',
+    vi: 'Korea Economic Daily'
+  },
   timeAgo: {
     ko: '8시간 전',
     en: '8h ago',
@@ -965,7 +1030,12 @@ const ARTICLES: Article[] = [{
     ja: ['ソン・ジュンギ主演のNetflix新作ドラマのヨーロッパ撮影現場がファンに捉えられ、大きな注目を集めている。イタリアのローマとフィレンツェを舞台にした本作は、ロマンスとスリラーの要素を組み合わせたジャンル作品として知られている。', '現地で撮影されたビハインドシーンがSNSで拡散し、ファンの期待が爆発している。フィレンツェのドゥオーモ大聖堂前での撮影シーンやローマのコロッセオを背景にしたシーンが含まれていると伝えられている。', '同ドラマは韓国とイタリアの文化が交差するストーリーを描き、イタリアの現地俳優との共演が行われるとされている。制作費だけで総500億ウォンに達する超大型プロジェクトで、Netflixコリア史上最大の投資作となる見通しだ。', '主演俳優のソン・ジュンギは制作発表会で「ヨーロッパの美しい背景の中で韓国俳優が主導するストーリーを描いたという点で非常に意義深い作品」と述べ、「視聴者がこれまで見たことのない新しいK-ドラマの姿をお見せする」と語った。'],
     vi: ['Địa điểm quay phim tại châu Âu của bộ phim Netflix mới của diễn viên Song Joong-ki đã được người hâm mộ ghi lại, tạo ra sự quan tâm lớn. Lấy bối cảnh Rome và Florence, Italy, tác phẩm được mô tả là thể loại kết hợp yếu tố lãng mạn và ly kỳ.', 'Những bức ảnh hậu trường lan truyền trên mạng xã hội đã thổi bùng sự mong chờ của người hâm mộ. Các cảnh được cho là bao gồm cảnh quay trước Nhà thờ Duomo ở Florence và bối cảnh Đấu trường La Mã ở Rome.', 'Bộ phim có câu chuyện giao thoa văn hóa Hàn Quốc và Ý, với các diễn viên địa phương Ý được cho là sẽ xuất hiện trong dàn cast. Ngân sách sản xuất đạt mức khổng lồ 50 tỷ KRW, dự kiến trở thành khoản đầu tư lớn nhất trong lịch sử Netflix Korea.', 'Diễn viên chính Song Joong-ki phát biểu tại họp báo sản xuất: "Đây là một tác phẩm rất có ý nghĩa vì nó tập trung vào câu chuyện do một diễn viên Hàn Quốc dẫn dắt trên nền cảnh châu Âu tuyệt đẹp," và thêm rằng anh sẽ "cho khán giả thấy một khía cạnh mới của K-drama mà họ chưa từng thấy trước đây."']
   },
-  source: '조선일보',
+  source: {
+    ko: '조선일보',
+    en: 'Chosun Ilbo',
+    ja: '朝鮮日報',
+    vi: 'Chosun Ilbo'
+  },
   timeAgo: {
     ko: '10시간 전',
     en: '10h ago',
@@ -993,7 +1063,12 @@ const ARTICLES: Article[] = [{
     ja: ['K-ビューティーの成長勢いが女性向け化粧品を超えて男性グルーミング市場にまで広がっている。大韓化粧品協会によると、韓国の男性向けビューティー製品のグローバル輸出額が前年比62%成長し、世界市場シェアが初めて20%を突破した。', '特にBBクリームや男性用サンクリーム、基礎スキンケアラインが海外で人気を集めている。化粧品に保守的だった米国・欧州の男性消費者がK-ビューティー製品を通じて初めてスキンケアに入門する現象も見られる。', 'このトレンドの背景にはK-POPアイドルやK-ドラマの男性主人公の影響が大きいという分析だ。輝く肌と洗練されたグルーミングを示すK-コンテンツが世界中の男性に新しいビューティー基準を提示しているという。', 'アモレパーシフィックの男性ビューティーブランド「b.ready」は今年だけで米国内販売量が前年比3倍以上増加した。同ブランドのマーケティング責任者は「K-ドラマ主人公の肌の秘訣への関心が実際の製品購入につながっている」と説明した。'],
     vi: ['Sự tăng trưởng của K-Beauty đang mở rộng ra ngoài mỹ phẩm phụ nữ sang thị trường chăm sóc sắc đẹp nam giới. Theo Hiệp hội Mỹ phẩm Hàn Quốc, xuất khẩu toàn cầu của sản phẩm làm đẹp nam Hàn Quốc tăng 62% so với cùng kỳ năm trước, với thị phần thế giới vượt 20% lần đầu tiên.', 'Kem BB, kem chống nắng cho nam và các dòng chăm sóc da cơ bản đặc biệt ngày càng được ưa chuộng ở nước ngoài. Một hiện tượng thú vị đang xuất hiện khi người tiêu dùng nam giới ở Mỹ và châu Âu, truyền thống bảo thủ về mỹ phẩm, đang bước vào chăm sóc da lần đầu tiên qua các sản phẩm K-Beauty.', 'Phân tích cho thấy xu hướng này phần lớn được thúc đẩy bởi ảnh hưởng của các idol K-pop và nhân vật nam chính K-drama. K-content thể hiện làn da sáng và grooming tinh tế đang trình bày tiêu chuẩn làm đẹp mới cho nam giới trên toàn thế giới.', 'Thương hiệu làm đẹp nam \'b.ready\' của AmorePacific chứng kiến doanh số tại Mỹ tăng gấp 3 lần so với năm trước chỉ trong năm nay. Giám đốc marketing của thương hiệu giải thích: "Sự quan tâm đến bí quyết làm đẹp của các nhân vật nam chính K-drama đang được chuyển thành mua hàng thực tế."']
   },
-  source: '동아일보',
+  source: {
+    ko: '동아일보',
+    en: 'Dong-A Ilbo',
+    ja: '東亜日報',
+    vi: 'Dong-A Ilbo'
+  },
   timeAgo: {
     ko: '1일 전',
     en: '1d ago',
@@ -3314,8 +3389,8 @@ export const ContentFeed = ({
   const bannerTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const liveTickTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [profileData, setProfileData] = useState<ProfileData>({
-    name: '지니J',
-    handle: 'jiny_j',
+    name: '가이아',
+    handle: 'jinee_j',
     bio: '🌊 K-컬처 전도사 | K-POP & K-드라마 광팬 | 아미 7년차',
     country: 'kr',
     avatar: 'https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=200&h=200&fit=crop'
@@ -3635,7 +3710,7 @@ export const ContentFeed = ({
                             </div>
                             <div className="px-4 py-3 flex items-center justify-between">
                               <div className="flex items-center gap-2 text-[11px] text-gray-400">
-                                <span className="font-semibold text-gray-500">{searchFilteredArticles[0].source}</span>
+                                <span className="font-semibold text-gray-500">{searchFilteredArticles[0].source[lang]}</span>
                                 <span>·</span>
                                 <span>{searchFilteredArticles[0].timeAgo[lang]}</span>
                               </div>
@@ -3669,7 +3744,7 @@ export const ContentFeed = ({
                                   <p className="text-[13px] font-bold text-gray-900 leading-snug mt-1.5 mb-1 line-clamp-2">{article.title[lang]}</p>
                                   <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
-                                      <span className="font-medium text-gray-500">{article.source}</span>
+                                      <span className="font-medium text-gray-500">{article.source[lang]}</span>
                                       <span>·</span>
                                       <span>{article.timeAgo[lang]}</span>
                                     </div>
@@ -4259,7 +4334,7 @@ export const ContentFeed = ({
                         <p className="text-[13px] text-gray-500 leading-relaxed mb-3 line-clamp-2">{featuredInChip.body[lang][0]}</p>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2 text-[11px] text-gray-400">
-                            <span className="font-medium text-gray-500">{featuredInChip.source}</span>
+                            <span className="font-medium text-gray-500">{featuredInChip.source[lang]}</span>
                             <span>·</span>
                             <span>{featuredInChip.timeAgo[lang]}</span>
                           </div>
@@ -4305,7 +4380,7 @@ export const ContentFeed = ({
                             </figure>
                             <div className="flex-1 min-w-0">
                               <p className="text-[13px] font-semibold text-gray-800 leading-snug line-clamp-2">{item.title[lang]}</p>
-                              <p className="text-[11px] text-gray-400 mt-0.5">{item.source}</p>
+                              <p className="text-[11px] text-gray-400 mt-0.5">{item.source[lang]}</p>
                             </div>
                           </button>)}
                       </div>
@@ -4382,7 +4457,7 @@ export const ContentFeed = ({
                             <p className="text-[12px] text-gray-400 leading-relaxed line-clamp-2 mb-2">{article.body[lang][0]}</p>
                             <div className="flex items-center gap-3">
                               <div className="flex items-center gap-1.5 text-[11px] text-gray-400">
-                                <span className="font-medium">{article.source}</span>
+                                <span className="font-medium">{article.source[lang]}</span>
                                 <span>·</span>
                                 <span>{article.timeAgo[lang]}</span>
                               </div>
@@ -4431,7 +4506,7 @@ export const ContentFeed = ({
                 </div>
                 <h1 className="text-[18px] font-black text-gray-900 leading-snug mb-2">{selectedArticle.title[lang]}</h1>
                 <div className="flex items-center gap-2 text-[12px] text-gray-400 mb-5">
-                  <span className="font-semibold text-gray-500">{selectedArticle.source}</span>
+                  <span className="font-semibold text-gray-500">{selectedArticle.source[lang]}</span>
                   <span>·</span>
                   <span>{selectedArticle.timeAgo[lang]}</span>
                 </div>
@@ -4532,7 +4607,7 @@ export const ContentFeed = ({
                         <div className="flex-1 min-w-0">
                           <span className={`${article.categoryColor} text-white text-[9px] font-black px-2 py-0.5 rounded-full`}>{article.category}</span>
                           <p className="text-[13px] font-bold text-gray-800 leading-snug mt-1 line-clamp-2">{article.title[lang]}</p>
-                          <p className="text-[11px] text-gray-400 mt-1">{article.source} · {article.timeAgo[lang]}</p>
+                          <p className="text-[11px] text-gray-400 mt-1">{article.source[lang]} · {article.timeAgo[lang]}</p>
                         </div>
                       </button>)}
                   </div>
@@ -5028,7 +5103,7 @@ export const ContentFeed = ({
                           <div className="flex-1 min-w-0">
                             <span className={`${article.categoryColor} text-white text-[9px] font-black px-2 py-0.5 rounded-full`}>{article.category}</span>
                             <p className="text-[13px] font-bold text-gray-800 leading-snug mt-1 line-clamp-2">{article.title[lang]}</p>
-                            <p className="text-[11px] text-gray-400 mt-0.5">{article.source} · {article.timeAgo[lang]}</p>
+                            <p className="text-[11px] text-gray-400 mt-0.5">{article.source[lang]} · {article.timeAgo[lang]}</p>
                           </div>
                         </div>)}
                     </div>}
