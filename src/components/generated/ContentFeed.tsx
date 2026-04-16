@@ -3145,10 +3145,10 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   threadId: 'th1',
   commentId: 'c1',
   text: {
-    ko: '슈가 컴백 진짜 너무 기대돼요!! 💜',
-    en: 'So hyped for Suga\'s comeback!! 💜',
-    ja: 'SUGAのカムバック楽しみすぎ!! 💜',
-    vi: 'Hóng Suga comeback quá!! 💜'
+    ko: '어거스트 디 감성 그대로 가줬으면 좋겠어요. 그게 슈가의 진짜 색깔이라고 생각해요.',
+    en: "I hope he keeps the Agust D vibe. That's the real Suga to me.",
+    ja: 'Agust Dの雰囲気のままでいてほしい。',
+    vi: 'Mình muốn anh ấy giữ nguyên hồn Agust D.'
   }
 }, {
   id: 'lt2',
@@ -3157,10 +3157,10 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   threadId: 'th1',
   commentId: 'c2',
   text: {
-    ko: '어거스트 디 감성 돌아와줘 🎵',
-    en: 'Bring back that Agust D energy 🎵',
-    ja: 'Agust Dのあの感性が戻ってきて 🎵',
-    vi: 'Mong Agust D trở lại 🎵'
+    ko: '이번엔 좀 더 팝적인 접근을 해도 좋을 것 같아요.',
+    en: 'A more pop-oriented approach would be nice this time.',
+    ja: '今回はもう少しポップなアプローチも良いと思います。',
+    vi: 'Lần này thử hướng pop hơn cũng hay đấy.'
   }
 }, {
   id: 'lt3',
@@ -3169,10 +3169,10 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   threadId: 'th2',
   commentId: 'c4',
   text: {
-    ko: '폭풍의 언덕 1화보고 눈물났어요 😭',
-    en: 'Cried during ep 1 of Storm on the Hill 😭',
-    ja: '嵐の丘1話で泣いちゃった 😭',
-    vi: 'Khóc khi xem tập 1 của Đồi Bão Tố 😭'
+    ko: '원작보다 감정 표현이 훨씬 풍부해요. 한국 배우들의 연기력이 정말 빛나는 작품입니다.',
+    en: 'The emotional depth is so much richer than the original. Korean actors really shine here.',
+    ja: '感情表現が原作よりずっと豊かです。',
+    vi: 'Chiều sâu cảm xúc phong phú hơn nguyên tác rất nhiều.'
   }
 }, {
   id: 'lt4',
@@ -3192,10 +3192,10 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   threadId: 'th3',
   commentId: 'c6',
   text: {
-    ko: '불닭볶음면 오늘도 먹었어요 🔥ㅋㅋ',
-    en: 'Had Buldak again today 🔥 lol',
-    ja: '今日もプルダック食べた 🔥笑',
-    vi: 'Hôm nay lại ăn Buldak 🔥 kkk'
+    ko: '베트남에서 불닭볶음면이 완전히 대세예요!',
+    en: 'Buldak is absolutely huge in Vietnam!',
+    ja: 'ベトナムでは辛ラーメンが完全に流行っています！',
+    vi: 'Mì Buldak đang cực kỳ hot ở Việt Nam!'
   }
 }, {
   id: 'lt6',
@@ -3204,10 +3204,10 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   threadId: 'th2',
   commentId: 'c10',
   text: {
-    ko: '오징어게임3 감독님 믿습니다 🦑',
-    en: 'Trust the director for Squid Game 3 🦑',
-    ja: 'イカゲーム3の監督を信じる 🦑',
-    vi: 'Tin tưởng đạo diễn Squid Game 3 🦑'
+    ko: '프랑스 문학 전공자인데, 원작의 핵심 주제를 한국 사회 맥락에 너무 자연스럽게 녹여냈어요. 박사 논문 쓰고 싶은 수준 😂',
+    en: 'As a French Lit major, they integrated the core themes into Korean social context so naturally. PhD-thesis level stuff 😂',
+    ja: 'フランス文学専攻ですが、原作の核心テーマを韓国社会の文脈に自然に溶け込ませています。博士論文が書けそうなレベル 😂',
+    vi: 'Là sinh viên văn học Pháp, họ đã lồng ghép các chủ đề cốt lõi vào bối cảnh xã hội Hàn Quốc rất tự nhiên. Đủ để viết luận văn tiến sĩ 😂'
   }
 }, {
   id: 'lt7',
@@ -3216,10 +3216,10 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   threadId: 'th1',
   commentId: 'c8',
   text: {
-    ko: '아미 7년차 오늘도 슈가 사랑해 💜',
-    en: '7yr ARMY still in love with Suga 💜',
-    ja: '7年目ARMYも今日もSUGA愛してる 💜',
-    vi: 'Fan 7 năm vẫn yêu Suga 💜'
+    ko: '어떤 장르든 슈가가 만들면 명곡이에요. 그냥 믿고 기다릴게요 💜',
+    en: "Whatever genre it is, if Suga makes it, it'll be a masterpiece. Just trust and wait 💜",
+    ja: 'どんなジャンルでもSUGAが作れば名曲。ただ信じて待ちます 💜',
+    vi: 'Dù thể loại gì, Suga làm là kiệt tác. Cứ tin tưởng và chờ thôi 💜'
   }
 }, {
   id: 'lt8',
@@ -3228,10 +3228,10 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   threadId: 'th3',
   commentId: 'c12',
   text: {
-    ko: '신라면 독일서도 품절이에요 😂',
-    en: 'Shin Ramen sold out in Germany too 😂',
-    ja: '辛ラーメンドイツでも品切れ 😂',
-    vi: 'Shin Ramen cũng cháy hàng ở Đức 😂'
+    ko: '독일 베를린 아시아 마트에서 신라면이 독일 인스턴트 라면보다 비싼데도 더 잘 팔려요. 진짜 신기해요.',
+    en: "In Berlin Asian markets, Shin Ramen sells better than German instant noodles even though it's more expensive. Truly amazing.",
+    ja: 'ベルリンのアジアマートでは辛ラーメンがドイツのインスタントラーメンより高いのによく売れています。',
+    vi: 'Ở chợ châu Á Berlin, Shin Ramen bán chạy hơn mì ăn liền Đức dù đắt hơn. Thật kỳ lạ.'
   }
 }];
 
@@ -4935,7 +4935,6 @@ export const ContentFeed = ({
                   <p className="text-[14px] font-bold text-gray-800 leading-relaxed">{selectedThread.topicSummary[lang]}</p>
                 </div>
                 <div className="flex items-center gap-3 text-[12px] text-gray-400">
-                  <span className="flex items-center gap-1"><MessageCircle size={13} /><span>{selectedThread.commentCount} {t(lang, 'commentBadge')}</span></span>
                   <span className="flex items-center gap-1"><Heart size={13} /><span>{selectedThread.likeCount.toLocaleString()} {t(lang, 'likeBadge')}</span></span>
                 </div>
               </div>
@@ -4971,7 +4970,21 @@ export const ContentFeed = ({
                               <Heart size={12} className={likedComments.has(comment.id) ? 'fill-red-500' : ''} />
                               <span className="text-[11px] font-semibold">{comment.likes + (likedComments.has(comment.id) ? 1 : 0)}</span>
                             </button>
+                            <button onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)} className="text-[11px] font-semibold text-gray-400 hover:text-pink-500 transition-colors">
+                              {lang === 'ko' ? '대댓글' : lang === 'ja' ? '返信' : lang === 'vi' ? 'Trả lời' : 'Reply'}
+                            </button>
                           </div>
+                          {replyingTo === comment.id && <div className="mt-2 flex items-center gap-2">
+                              <div className="flex-1 flex items-center bg-gray-100 rounded-full px-3 py-2 gap-1.5">
+                                <input type="text" value={commentInput} onChange={e => setCommentInput(e.target.value)} placeholder={`@${comment.user} ${lang === 'ko' ? '에게 대댓글...' : lang === 'ja' ? 'に返信...' : lang === 'vi' ? 'Trả lời...' : 'Reply...'}`} className="flex-1 bg-transparent text-[12px] text-gray-700 outline-none placeholder:text-gray-400" />
+                              </div>
+                              <button onClick={() => {
+                                setCommentInput('');
+                                setReplyingTo(null);
+                              }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${commentInput.trim() ? 'bg-pink-500 text-white' : 'bg-gray-100 text-gray-300'}`}>
+                                <Send size={13} />
+                              </button>
+                            </div>}
                         </div>
                       </div>
                       {(comment.replies ?? []).length > 0 && <div className="ml-12 mt-3 flex flex-col gap-3 border-l-2 border-gray-100 pl-3">
