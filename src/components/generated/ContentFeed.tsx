@@ -3559,6 +3559,8 @@ export const ContentFeed = ({
   const featuredInChip = filteredByChip.find(a => a.isFeatured) ?? filteredByChip[0];
   const regularInChip = featuredInChip ? ARTICLES.filter(a => a.id !== featuredInChip.id) : [];
   const searchFilteredArticles = searchQuery.trim() ? ARTICLES.filter(a => a.title[lang].toLowerCase().includes(searchQuery.toLowerCase()) || a.category.toLowerCase().includes(searchQuery.toLowerCase())) : [];
+  const searchFilteredThreads = searchQuery.trim() ? COMMUNITY_THREADS.filter(t => t.topicTitle[lang].toLowerCase().includes(searchQuery.toLowerCase()) || t.topicSummary[lang].toLowerCase().includes(searchQuery.toLowerCase()) || t.category.toLowerCase().includes(searchQuery.toLowerCase())) : [];
+  const hasSearchResults = searchFilteredArticles.length > 0 || searchFilteredThreads.length > 0;
   const bookmarkedList = ARTICLES.filter(a => bookmarkedArticles.has(a.id));
   const showBottomNav = !isDetailView;
   const selectedCountry = COUNTRY_OPTIONS.find(c => c.value === editDraft.country) ?? COUNTRY_OPTIONS[0];
@@ -3683,107 +3685,77 @@ export const ContentFeed = ({
 
             <div className="flex-1 overflow-y-auto">
               <AnimatePresence mode="wait">
-                {searchQuery.trim() ? <motion.div key="results" initial={{
-              opacity: 0
-            }} animate={{
-              opacity: 1
-            }} exit={{
-              opacity: 0
-            }} transition={{
-              duration: 0.15
-            }}>
-                    {searchFilteredArticles.length > 0 ? <div>
-                        <div className="px-4 pt-4 pb-2">
+                {searchQuery.trim() ? <motion.div key="results" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
+                    {hasSearchResults ? <div className="pb-6">
+                        {/* 검색 결과 헤더 */}
+                        <div className="px-4 pt-4 pb-3">
                           <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">
-                            {lang === 'ko' ? `검색 결과 ${searchFilteredArticles.length}건` : lang === 'ja' ? `検索結果 ${searchFilteredArticles.length}件` : lang === 'vi' ? `${searchFilteredArticles.length} kết quả` : `${searchFilteredArticles.length} Results`}
-                            {' '}
-                            <span className="text-pink-500 normal-case font-black">"{searchQuery}"</span>
+                            {lang === 'ko' ? `"${searchQuery}" 검색 결과` : lang === 'ja' ? `"${searchQuery}" の検索結果` : lang === 'vi' ? `Kết quả cho "${searchQuery}"` : `Results for "${searchQuery}"`}
                           </p>
                         </div>
-                        <div className="px-4 pb-2">
-                          <motion.button initial={{
-                    opacity: 0,
-                    y: 8
-                  }} animate={{
-                    opacity: 1,
-                    y: 0
-                  }} transition={{
-                    duration: 0.18
-                  }} onClick={() => {
-                    setSelectedArticle(searchFilteredArticles[0]);
-                    setOverlay(null);
-                    setSearchQuery('');
-                  }} className="w-full text-left bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-all active:scale-[0.98]">
-                            <div className="relative">
-                              <img src={searchFilteredArticles[0].image} alt={searchFilteredArticles[0].title[lang]} className="w-full h-[160px] object-cover" />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                              <div className="absolute top-3 left-3">
-                                <span className={`${searchFilteredArticles[0].categoryColor} text-white text-[10px] font-black px-2.5 py-1 rounded-full`}>{searchFilteredArticles[0].category}</span>
-                              </div>
-                              <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold px-2.5 py-1 rounded-full">
-                                {lang === 'ko' ? '최상위 결과' : lang === 'ja' ? 'トップ結果' : lang === 'vi' ? 'Kết quả hàng đầu' : 'Top Result'}
-                              </div>
-                              <div className="absolute bottom-4 left-0 right-0 px-4 pb-2 pt-8">
-                                <p className="text-white font-black text-[14px] leading-snug line-clamp-1">{searchFilteredArticles[0].title[lang]}</p>
-                              </div>
-                            </div>
-                            <div className="px-4 py-3 flex items-center justify-between">
-                              <div className="flex items-center gap-2 text-[11px] text-gray-400">
-                                <span className="font-semibold text-gray-500">{searchFilteredArticles[0].source[lang]}</span>
-                                <span>·</span>
-                                <span>{searchFilteredArticles[0].timeAgo[lang]}</span>
-                              </div>
-                              <div className="flex items-center gap-3 text-gray-400">
-                                <span className="flex items-center gap-1 text-[11px]"><Heart size={12} /><span>{searchFilteredArticles[0].likes.toLocaleString()}</span></span>
-                                <span className="flex items-center gap-1 text-[11px]"><MessageCircle size={12} /><span>{searchFilteredArticles[0].comments}</span></span>
-                              </div>
-                            </div>
-                          </motion.button>
-                        </div>
-                        {searchFilteredArticles.length > 1 && <div className="px-4 pb-4 flex flex-col gap-2.5">
-                            {searchFilteredArticles.slice(1).map((article, idx) => <motion.button key={article.id} initial={{
-                    opacity: 0,
-                    y: 10
-                  }} animate={{
-                    opacity: 1,
-                    y: 0
-                  }} transition={{
-                    duration: 0.16,
-                    delay: 0.05 * (idx + 1)
-                  }} onClick={() => {
-                    setSelectedArticle(article);
-                    setOverlay(null);
-                    setSearchQuery('');
-                  }} className="w-full text-left bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex gap-0 hover:shadow-md transition-all active:scale-[0.98]">
-                                <figure className="shrink-0 w-[100px] h-[84px] overflow-hidden bg-gray-100">
-                                  <img src={article.image} alt={article.title[lang]} className="w-full h-full object-cover" />
-                                </figure>
-                                <div className="flex-1 min-w-0 px-3.5 py-3">
-                                  <span className={`${article.categoryColor} text-white text-[9px] font-black px-2 py-0.5 rounded-full`}>{article.category}</span>
-                                  <p className="text-[13px] font-bold text-gray-900 leading-snug mt-1.5 mb-1 line-clamp-2">{article.title[lang]}</p>
-                                  <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
-                                      <span className="font-medium text-gray-500">{article.source[lang]}</span>
-                                      <span>·</span>
-                                      <span>{article.timeAgo[lang]}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2 text-gray-300">
-                                      <span className="flex items-center gap-0.5 text-[10px]"><Heart size={10} /><span>{article.likes.toLocaleString()}</span></span>
-                                    </div>
+
+                        {/* 뉴스 섹션 */}
+                        {searchFilteredArticles.length > 0 && <div className="mb-5">
+                          <div className="px-4 pb-2 flex items-center gap-2">
+                            <span className="text-[11px] font-black text-gray-700 uppercase tracking-widest">{lang === 'ko' ? '뉴스' : lang === 'ja' ? 'ニュース' : lang === 'vi' ? 'Tin tức' : 'News'}</span>
+                            <span className="text-[10px] font-bold text-pink-400 bg-pink-50 px-2 py-0.5 rounded-full">{searchFilteredArticles.length}</span>
+                          </div>
+                          <div className="px-4 flex flex-col gap-2.5">
+                            {searchFilteredArticles.map((article, idx) => <motion.button key={article.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.15, delay: 0.04 * idx }} onClick={() => {
+                              setSelectedArticle(article);
+                              setOverlay(null);
+                              setActiveTab('home');
+                              setSearchQuery('');
+                            }} className="w-full text-left bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 flex hover:shadow-md transition-all active:scale-[0.98]">
+                              <figure className="shrink-0 w-[100px] h-[84px] overflow-hidden bg-gray-100">
+                                <img src={article.image} alt={article.title[lang]} className="w-full h-full object-cover" />
+                              </figure>
+                              <div className="flex-1 min-w-0 px-3.5 py-3">
+                                <span className={`${article.categoryColor} text-white text-[9px] font-black px-2 py-0.5 rounded-full`}>{article.category}</span>
+                                <p className="text-[13px] font-bold text-gray-900 leading-snug mt-1.5 mb-1 line-clamp-2">{article.title[lang]}</p>
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
+                                    <span className="font-medium text-gray-500">{article.source[lang]}</span>
+                                    <span>·</span>
+                                    <span>{article.timeAgo[lang]}</span>
+                                  </div>
+                                  <div className="flex items-center gap-2 text-gray-300">
+                                    <span className="flex items-center gap-0.5 text-[10px]"><Heart size={10} /><span>{article.likes.toLocaleString()}</span></span>
                                   </div>
                                 </div>
-                              </motion.button>)}
-                          </div>}
-                      </div> : <div className="flex flex-col items-center justify-center py-24 px-8 text-center">
-                        <motion.div initial={{
-                  scale: 0.8,
-                  opacity: 0
-                }} animate={{
-                  scale: 1,
-                  opacity: 1
-                }} transition={{
-                  duration: 0.2
-                }} className="w-16 h-16 rounded-full bg-pink-50 flex items-center justify-center mb-4">
+                              </div>
+                            </motion.button>)}
+                          </div>
+                        </div>}
+
+                        {/* 커뮤니티 섹션 */}
+                        {searchFilteredThreads.length > 0 && <div>
+                          <div className="px-4 pb-2 flex items-center gap-2">
+                            <span className="text-[11px] font-black text-gray-700 uppercase tracking-widest">{lang === 'ko' ? '커뮤니티' : lang === 'ja' ? 'コミュニティ' : lang === 'vi' ? 'Cộng đồng' : 'Community'}</span>
+                            <span className="text-[10px] font-bold text-pink-400 bg-pink-50 px-2 py-0.5 rounded-full">{searchFilteredThreads.length}</span>
+                          </div>
+                          <div className="px-4 flex flex-col gap-2.5">
+                            {searchFilteredThreads.map((thread, idx) => <motion.button key={thread.id} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.15, delay: 0.04 * idx }} onClick={() => {
+                              setSelectedThread(thread);
+                              setOverlay(null);
+                              setActiveTab('community');
+                              setSearchQuery('');
+                            }} className="w-full text-left bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-all active:scale-[0.98]">
+                              <div className="px-4 py-3.5">
+                                <div className="flex items-center gap-2 mb-2">
+                                  <span className={`text-white text-[9px] font-black px-2 py-0.5 rounded-full ${thread.categoryColor}`}>{thread.category}</span>
+                                  <span className="text-[10px] text-gray-400 flex items-center gap-1"><MessageCircle size={9} />{lang === 'ko' ? `${thread.commentCount}명 참여중` : `${thread.commentCount} participating`}</span>
+                                </div>
+                                <p className="text-[13px] font-bold text-gray-900 leading-snug line-clamp-2 mb-1">{thread.topicTitle[lang]}</p>
+                                <p className="text-[11px] text-gray-500 leading-relaxed line-clamp-2">{thread.topicSummary[lang]}</p>
+                              </div>
+                            </motion.button>)}
+                          </div>
+                        </div>}
+                      </div>
+
+                    : <div className="flex flex-col items-center justify-center py-24 px-8 text-center">
+                        <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.2 }} className="w-16 h-16 rounded-full bg-pink-50 flex items-center justify-center mb-4">
                           <Search size={28} className="text-pink-300" />
                         </motion.div>
                         <p className="text-[16px] font-black text-gray-800 mb-1">{t(lang, 'noResults')}</p>
