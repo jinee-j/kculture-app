@@ -3136,12 +3136,14 @@ type LiveCommentTick = {
   flag: string;
   text: Record<Lang, string>;
   threadId: string;
+  commentId?: string;
 };
 const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   id: 'lt1',
   user: 'minji_k',
   flag: '🇰🇷',
   threadId: 'th1',
+  commentId: 'c1',
   text: {
     ko: '슈가 컴백 진짜 너무 기대돼요!! 💜',
     en: 'So hyped for Suga\'s comeback!! 💜',
@@ -3153,6 +3155,7 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   user: 'yuki_army',
   flag: '🇯🇵',
   threadId: 'th1',
+  commentId: 'c2',
   text: {
     ko: '어거스트 디 감성 돌아와줘 🎵',
     en: 'Bring back that Agust D energy 🎵',
@@ -3164,6 +3167,7 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   user: 'drama_fan',
   flag: '🇺🇸',
   threadId: 'th2',
+  commentId: 'c4',
   text: {
     ko: '폭풍의 언덕 1화보고 눈물났어요 😭',
     en: 'Cried during ep 1 of Storm on the Hill 😭',
@@ -3186,6 +3190,7 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   user: 'nguyen_foodie',
   flag: '🇻🇳',
   threadId: 'th3',
+  commentId: 'c6',
   text: {
     ko: '불닭볶음면 오늘도 먹었어요 🔥ㅋㅋ',
     en: 'Had Buldak again today 🔥 lol',
@@ -3197,6 +3202,7 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   user: 'paris_kdrama',
   flag: '🇫🇷',
   threadId: 'th2',
+  commentId: 'c10',
   text: {
     ko: '오징어게임3 감독님 믿습니다 🦑',
     en: 'Trust the director for Squid Game 3 🦑',
@@ -3208,6 +3214,7 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   user: 'suga_forever',
   flag: '🇰🇷',
   threadId: 'th1',
+  commentId: 'c8',
   text: {
     ko: '아미 7년차 오늘도 슈가 사랑해 💜',
     en: '7yr ARMY still in love with Suga 💜',
@@ -3219,6 +3226,7 @@ const LIVE_COMMENT_TICKS: LiveCommentTick[] = [{
   user: 'berlin_kfood',
   flag: '🇩🇪',
   threadId: 'th3',
+  commentId: 'c12',
   text: {
     ko: '신라면 독일서도 품절이에요 😂',
     en: 'Shin Ramen sold out in Germany too 😂',
@@ -3383,6 +3391,7 @@ export const ContentFeed = ({
   const [communityCardPage, setCommunityCardPage] = useState(0);
   const [isRefreshSpinning, setIsRefreshSpinning] = useState(false);
   const [liveTickIdx, setLiveTickIdx] = useState(0);
+  const [highlightedCommentId, setHighlightedCommentId] = useState<string | null>(null);
   const [shuffledThreads] = useState<CommunityThread[]>(() => [...COMMUNITY_THREADS].sort(() => Math.random() - 0.5));
   const kbotScrollRef = useRef<HTMLDivElement>(null);
   const kbotInputRef = useRef<HTMLInputElement>(null);
@@ -4774,6 +4783,10 @@ export const ContentFeed = ({
                 const matchThread = COMMUNITY_THREADS.find(th => th.id === tick.threadId);
                 if (matchThread) {
                   setSelectedThread(matchThread);
+                  if (tick.commentId) {
+                    setHighlightedCommentId(tick.commentId);
+                    setTimeout(() => setHighlightedCommentId(null), 3000);
+                  }
                 }
               }}>
                     <span className="text-[14px] shrink-0">{LIVE_COMMENT_TICKS[liveTickIdx].flag}</span>
@@ -4933,7 +4946,7 @@ export const ContentFeed = ({
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
-                  {[...selectedThread.comments].sort((a, b) => commentSort === 'popular' ? b.likes - a.likes : 0).map(comment => <div key={comment.id}>
+                  {[...selectedThread.comments].sort((a, b) => commentSort === 'popular' ? b.likes - a.likes : 0).map(comment => <div key={comment.id} className={`rounded-xl transition-colors duration-500 ${highlightedCommentId === comment.id ? 'bg-pink-50 ring-1 ring-pink-200 px-2 py-1 -mx-2' : ''}`}>
                       <div className="flex gap-3">
                         <img src={comment.avatar} alt={comment.user} className="w-9 h-9 rounded-full object-cover shrink-0 border border-gray-100" />
                         <div className="flex-1 min-w-0">
