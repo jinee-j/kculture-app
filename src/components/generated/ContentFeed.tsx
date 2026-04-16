@@ -3392,6 +3392,7 @@ export const ContentFeed = ({
   const [isRefreshSpinning, setIsRefreshSpinning] = useState(false);
   const [liveTickIdx, setLiveTickIdx] = useState(0);
   const [highlightedCommentId, setHighlightedCommentId] = useState<string | null>(null);
+  const highlightRef = useRef<HTMLDivElement>(null);
   const [shuffledThreads] = useState<CommunityThread[]>(() => [...COMMUNITY_THREADS].sort(() => Math.random() - 0.5));
   const kbotScrollRef = useRef<HTMLDivElement>(null);
   const kbotInputRef = useRef<HTMLInputElement>(null);
@@ -3462,6 +3463,15 @@ export const ContentFeed = ({
       scrollContainerRef.current.scrollTop = 0;
     }
   }, [selectedThread]);
+
+  // Scroll to highlighted comment after thread renders
+  useEffect(() => {
+    if (highlightedCommentId && highlightRef.current && scrollContainerRef?.current) {
+      setTimeout(() => {
+        highlightRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 300);
+    }
+  }, [highlightedCommentId]);
 
   // Determine if we're in a detail view — hide main header and bottom nav accordingly
   const isDetailView = !!selectedArticle || activeTab === 'community' && !!selectedThread;
@@ -4878,7 +4888,7 @@ export const ContentFeed = ({
                     </div>
                     <div className="flex items-center justify-between px-4 pb-3 border-t border-gray-50 pt-2.5">
                       <div className="flex items-center gap-3 text-[11px] text-gray-400">
-                        <span className="flex items-center gap-0.5"><MessageCircle size={10} /><span>{thread.commentCount}</span></span>
+                        <span className="flex items-center gap-0.5"><MessageCircle size={10} /><span>{lang === 'ko' ? `${thread.commentCount}명 참여중` : lang === 'ja' ? `${thread.commentCount}人参加中` : lang === 'vi' ? `${thread.commentCount} đang tham gia` : `${thread.commentCount} participating`}</span></span>
                         <span className="flex items-center gap-0.5"><Heart size={10} /><span>{thread.likeCount.toLocaleString()}</span></span>
                       </div>
                       <span className="flex items-center gap-1 text-[11px] text-pink-500 font-semibold shrink-0">
@@ -4946,7 +4956,7 @@ export const ContentFeed = ({
                   </div>
                 </div>
                 <div className="flex flex-col gap-4">
-                  {[...selectedThread.comments].sort((a, b) => commentSort === 'popular' ? b.likes - a.likes : 0).map(comment => <div key={comment.id} className={`rounded-xl transition-colors duration-500 ${highlightedCommentId === comment.id ? 'bg-pink-50 ring-1 ring-pink-200 px-2 py-1 -mx-2' : ''}`}>
+                  {[...selectedThread.comments].sort((a, b) => commentSort === 'popular' ? b.likes - a.likes : 0).map(comment => <div key={comment.id} ref={highlightedCommentId === comment.id ? highlightRef : null} className={`rounded-xl transition-colors duration-500 ${highlightedCommentId === comment.id ? 'bg-pink-50 ring-1 ring-pink-200 px-2 py-1 -mx-2' : ''}`}>
                       <div className="flex gap-3">
                         <img src={comment.avatar} alt={comment.user} className="w-9 h-9 rounded-full object-cover shrink-0 border border-gray-100" />
                         <div className="flex-1 min-w-0">
@@ -4961,21 +4971,7 @@ export const ContentFeed = ({
                               <Heart size={12} className={likedComments.has(comment.id) ? 'fill-red-500' : ''} />
                               <span className="text-[11px] font-semibold">{comment.likes + (likedComments.has(comment.id) ? 1 : 0)}</span>
                             </button>
-                            <button onClick={() => setReplyingTo(replyingTo === comment.id ? null : comment.id)} className="text-[11px] font-semibold text-gray-400 hover:text-pink-500 transition-colors">
-                              {lang === 'ko' ? '답글' : lang === 'ja' ? '返信' : lang === 'vi' ? 'Trả lời' : 'Reply'}
-                            </button>
                           </div>
-                          {replyingTo === comment.id && <div className="mt-2 flex items-center gap-2">
-                              <div className="flex-1 flex items-center bg-gray-100 rounded-full px-3 py-2 gap-1.5">
-                                <input type="text" value={commentInput} onChange={e => setCommentInput(e.target.value)} placeholder={`@${comment.user} ${lang === 'ko' ? '에게 답글...' : lang === 'ja' ? 'に返信...' : lang === 'vi' ? 'Trả lời...' : 'Reply...'}`} className="flex-1 bg-transparent text-[12px] text-gray-700 outline-none placeholder:text-gray-400" />
-                              </div>
-                              <button onClick={() => {
-                        setCommentInput('');
-                        setReplyingTo(null);
-                      }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${commentInput.trim() ? 'bg-pink-500 text-white' : 'bg-gray-100 text-gray-300'}`}>
-                                <Send size={13} />
-                              </button>
-                            </div>}
                         </div>
                       </div>
                       {(comment.replies ?? []).length > 0 && <div className="ml-12 mt-3 flex flex-col gap-3 border-l-2 border-gray-100 pl-3">
