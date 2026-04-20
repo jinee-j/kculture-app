@@ -3506,6 +3506,8 @@ export const ContentFeed = ({
   const [kbotInput, setKbotInput] = useState('');
   const [kbotTyping, setKbotTyping] = useState(false);
   const [feedExpanded, setFeedExpanded] = useState(false);
+  const [toastMsg, setToastMsg] = useState<string | null>(null);
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [hotGridSeed, setHotGridSeed] = useState(0);
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [commentSort, setCommentSort] = useState<'latest' | 'popular'>('latest');
@@ -3576,6 +3578,9 @@ export const ContentFeed = ({
   useEffect(() => {
     if (selectedArticle && scrollContainerRef?.current) {
       scrollContainerRef.current.scrollTop = 0;
+      setTimeout(() => {
+        if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0;
+      }, 50);
     }
   }, [selectedArticle]);
 
@@ -3643,11 +3648,23 @@ export const ContentFeed = ({
     n.has(id) ? n.delete(id) : n.add(id);
     return n;
   });
-  const toggleBookmark = (id: string) => setBookmarkedArticles(prev => {
-    const n = new Set(prev);
-    n.has(id) ? n.delete(id) : n.add(id);
-    return n;
-  });
+  const showToast = (msg: string) => {
+    setToastMsg(msg);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => setToastMsg(null), 2000);
+  };
+  const toggleBookmark = (id: string) => {
+    setBookmarkedArticles(prev => {
+      const n = new Set(prev);
+      const isAdding = !n.has(id);
+      isAdding ? n.add(id) : n.delete(id);
+      showToast(isAdding
+        ? (lang === 'ko' ? '북마크에 저장됐어요 🔖' : lang === 'ja' ? 'ブックマークに保存しました 🔖' : lang === 'vi' ? 'Đã lưu vào bookmark 🔖' : 'Saved to bookmarks 🔖')
+        : (lang === 'ko' ? '북마크에서 삭제됐어요' : lang === 'ja' ? 'ブックマークから削除しました' : lang === 'vi' ? 'Đã xóa khỏi bookmark' : 'Removed from bookmarks')
+      );
+      return n;
+    });
+  };
   const toggleLikeArticleComment = (id: string) => setLikedArticleComments(prev => {
     const n = new Set(prev);
     n.has(id) ? n.delete(id) : n.add(id);
@@ -3686,12 +3703,24 @@ export const ContentFeed = ({
   const bookmarkedList = ARTICLES.filter(a => bookmarkedArticles.has(a.id));
   const showBottomNav = !isDetailView;
   const selectedCountry = COUNTRY_OPTIONS.find(c => c.value === editDraft.country) ?? COUNTRY_OPTIONS[0];
-  return <div className="max-w-[480px] mx-auto min-h-screen bg-[#f7f7f8] font-sans flex flex-col">
+  return <div className="max-w-[480px] mx-auto min-h-screen bg-[#f7f7f8] font-sans flex flex-col relative">
+      {/* ── Toast ── */}
+      <AnimatePresence>
+        {toastMsg && <motion.div key="toast" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 16 }} transition={{ duration: 0.2 }} className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[200] bg-gray-900/90 backdrop-blur-sm text-white text-[13px] font-semibold px-5 py-2.5 rounded-full shadow-lg whitespace-nowrap">
+            {toastMsg}
+          </motion.div>}
+      </AnimatePresence>
 
       {/* ── Main Header — hidden in detail views ── */}
       {!isDetailView && <header className="sticky top-0 z-50 bg-white shadow-sm">
           <div className="flex items-center justify-between px-4 h-14">
-            <h1 className="text-[22px] font-black tracking-tight text-gray-900">
+            <h1 className="text-[22px] font-black tracking-tight text-gray-900 cursor-pointer" onClick={() => {
+              setActiveTab('home');
+              setSelectedArticle(null);
+              setSelectedThread(null);
+              setActiveChip('all');
+              if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0;
+            }}>
               <span className="text-pink-500">K</span>
               <span className="text-gray-300">·</span>
               <span>WAVE</span>
