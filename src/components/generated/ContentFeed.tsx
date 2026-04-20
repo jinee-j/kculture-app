@@ -4430,25 +4430,12 @@ export const ContentFeed = ({
                             <span>·</span>
                             <span>{featuredInChip.timeAgo[lang]}</span>
                           </div>
-                          <div className="flex items-center gap-3 text-gray-400">
-                            <button onClick={e => {
-                      e.stopPropagation();
-                      toggleLikeArticle(featuredInChip.id);
-                    }} className={`flex items-center gap-1 transition-colors ${likedArticles.has(featuredInChip.id) ? 'text-red-500' : 'hover:text-red-400'}`}>
-                              <Heart size={15} className={likedArticles.has(featuredInChip.id) ? 'fill-red-500' : ''} />
-                              <span className="text-[11px]">{featuredInChip.likes + (likedArticles.has(featuredInChip.id) ? 1 : 0)}</span>
-                            </button>
-                            <button onClick={e => e.stopPropagation()} className="flex items-center gap-1 hover:text-blue-400 transition-colors">
-                              <MessageCircle size={15} />
-                              <span className="text-[11px]">{featuredInChip.comments}</span>
-                            </button>
-                            <button onClick={e => {
+                          <button onClick={e => {
                       e.stopPropagation();
                       toggleBookmark(featuredInChip.id);
-                    }} className={`transition-colors ${bookmarkedArticles.has(featuredInChip.id) ? 'text-gray-800' : 'hover:text-gray-600'}`}>
-                              <Bookmark size={15} className={bookmarkedArticles.has(featuredInChip.id) ? 'fill-gray-800' : ''} />
-                            </button>
-                          </div>
+                    }} className={`transition-colors ${bookmarkedArticles.has(featuredInChip.id) ? 'text-gray-800' : 'text-gray-400 hover:text-gray-600'}`}>
+                            <Bookmark size={15} className={bookmarkedArticles.has(featuredInChip.id) ? 'fill-gray-800' : ''} />
+                          </button>
                         </div>
                       </div>
                     </article>}
@@ -4478,7 +4465,7 @@ export const ContentFeed = ({
                         <div className="grid grid-cols-2 gap-3">
                           {gridItems.map(item => (
                             <button key={item.id} className="text-left group active:scale-[0.97] transition-transform">
-                              <div className="relative w-full h-[260px] rounded-2xl overflow-hidden mb-2 bg-gray-100">
+                              <div className="relative w-full rounded-2xl overflow-hidden mb-2 bg-gray-100" style={{aspectRatio: '3/4'}}>
                                 <img src={item.thumbnail} alt={item.title[lang]} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                                 <div className="absolute inset-0 flex items-center justify-center">
