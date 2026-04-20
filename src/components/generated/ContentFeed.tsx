@@ -5061,7 +5061,7 @@ export const ContentFeed = ({
               <div className="bg-white mt-[1px] px-4 pt-4 pb-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-[14px] font-black text-gray-900">
-                    {lang === 'ko' ? `댓글 ${selectedThread.comments.length}` : lang === 'ja' ? `コメント ${selectedThread.comments.length}` : lang === 'vi' ? `Bình luận ${selectedThread.comments.length}` : `Comments ${selectedThread.comments.length}`}
+                    {(() => { const total = selectedThread.comments.reduce((sum, c) => sum + 1 + (c.replies?.length ?? 0), 0); return lang === 'ko' ? `댓글 ${total}` : lang === 'ja' ? `コメント ${total}` : lang === 'vi' ? `Bình luận ${total}` : `Comments ${total}`; })()}
                   </h3>
                   <div className="flex items-center gap-0.5 bg-gray-100 rounded-full p-0.5">
                     <button onClick={() => setCommentSort('latest')} className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold transition-all ${commentSort === 'latest' ? 'bg-white text-gray-900 shadow-sm' : 'text-gray-400'}`}>
