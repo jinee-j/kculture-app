@@ -3578,9 +3578,11 @@ export const ContentFeed = ({
   useEffect(() => {
     if (selectedArticle && scrollContainerRef?.current) {
       scrollContainerRef.current.scrollTop = 0;
-      setTimeout(() => {
-        if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0;
-      }, 50);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0;
+        });
+      });
     }
   }, [selectedArticle]);
 
@@ -3588,6 +3590,11 @@ export const ContentFeed = ({
   useEffect(() => {
     if (selectedThread && scrollContainerRef?.current) {
       scrollContainerRef.current.scrollTop = 0;
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0;
+        });
+      });
     }
   }, [selectedThread]);
 
