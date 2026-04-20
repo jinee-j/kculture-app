@@ -4360,22 +4360,33 @@ export const ContentFeed = ({
                             <span>{lang === 'ko' ? '새로고침' : lang === 'ja' ? '更新' : lang === 'vi' ? 'Làm mới' : 'Refresh'}</span>
                           </button>
                         </div>
-                        <div className="grid grid-cols-2 gap-2.5">
+                        <div className="grid grid-cols-2 gap-3">
                           {gridItems.map(item => (
-                            <button key={item.id} className="text-left rounded-2xl overflow-hidden bg-gray-100 active:scale-[0.97] transition-transform group">
-                              <div className="relative w-full h-[140px] overflow-hidden">
+                            <button key={item.id} className="text-left group active:scale-[0.97] transition-transform">
+                              <div className="relative w-full h-[200px] rounded-2xl overflow-hidden mb-2 bg-gray-100">
                                 <img src={item.thumbnail} alt={item.title[lang]} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                                 <div className="absolute inset-0 flex items-center justify-center">
-                                  <div className="w-9 h-9 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/40">
-                                    <Play size={14} className="text-white fill-white ml-0.5" />
+                                  <div className="w-10 h-10 bg-white/25 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/40">
+                                    <Play size={16} className="text-white fill-white ml-0.5" />
                                   </div>
                                 </div>
                                 <div className="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md">{item.duration}</div>
+                                <div className="absolute top-2 left-2">
+                                  <span className={`${item.categoryColor} text-white text-[9px] font-black px-2 py-0.5 rounded-full`}>{item.category}</span>
+                                </div>
                               </div>
-                              <div className="px-2.5 py-2">
-                                <p className="text-[12px] font-bold text-gray-900 leading-snug line-clamp-2 mb-1">{item.title[lang]}</p>
-                                <p className="text-[10px] text-gray-400">{item.channel} · {item.views[lang]}</p>
+                              <p className="text-[12px] font-bold text-gray-900 leading-snug line-clamp-2 mb-1">{item.title[lang]}</p>
+                              <div className="flex items-center gap-1.5">
+                                <div className="w-4 h-4 rounded-full overflow-hidden bg-gray-100 shrink-0">
+                                  <img src={item.channelLogo} alt={item.channel} className="w-full h-full object-cover" />
+                                </div>
+                                <span className="text-[10px] text-gray-500 font-medium truncate">{item.channel}</span>
+                              </div>
+                              <div className="flex items-center gap-1.5 mt-0.5">
+                                <span className="text-[10px] text-gray-400">▷ {item.views[lang]}</span>
+                                <span className="text-gray-200">·</span>
+                                <span className="text-[10px] text-gray-400">{item.timeAgo[lang]}</span>
                               </div>
                             </button>
                           ))}
