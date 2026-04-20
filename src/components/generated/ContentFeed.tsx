@@ -3684,8 +3684,15 @@ export const ContentFeed = ({
             </div>
 
             <div className="flex-1 overflow-y-auto">
+              {/* 화면 준비중 */}
+              <div className="flex flex-col items-center justify-center h-full py-32 px-8 text-center">
+                <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                  <Search size={24} className="text-gray-300" />
+                </div>
+                <p className="text-[15px] font-bold text-gray-400">화면 준비중입니다</p>
+              </div>
               <AnimatePresence mode="wait">
-                {searchQuery.trim() ? <motion.div key="results" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
+                {false ? <motion.div key="results" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
                     {hasSearchResults ? <div className="pb-6">
                         {/* 검색 결과 헤더 */}
                         <div className="px-4 pt-4 pb-3">
@@ -4291,19 +4298,7 @@ export const ContentFeed = ({
                               </div>
                             </motion.div> : null)}
                         </AnimatePresence>
-                        {/* Prev/Next arrows */}
-                        <button onClick={e => {
-                  e.stopPropagation();
-                  goToBanner((featuredBannerIndex - 1 + FEATURED_BANNERS.length) % FEATURED_BANNERS.length);
-                }} className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/50 transition-colors z-10">
-                          <ChevronLeft size={16} />
-                        </button>
-                        <button onClick={e => {
-                  e.stopPropagation();
-                  goToBanner((featuredBannerIndex + 1) % FEATURED_BANNERS.length);
-                }} className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-black/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-black/50 transition-colors z-10">
-                          <ChevronRight size={16} />
-                        </button>
+                        {/* Prev/Next arrows removed */}
                       </div>
                       {/* Dot indicators */}
                       <div className="flex items-center justify-center gap-1.5 py-2.5 bg-white">
