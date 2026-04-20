@@ -4744,8 +4744,7 @@ export const ContentFeed = ({
                           <img src={article.image} alt={article.title[lang]} className="w-full h-full object-cover" />
                         </figure>
                         <div className="flex-1 min-w-0">
-                          <span className={`${article.categoryColor} text-white text-[9px] font-black px-2 py-0.5 rounded-full`}>{article.category}</span>
-                          <p className="text-[13px] font-bold text-gray-800 leading-snug mt-1 line-clamp-2">{article.title[lang]}</p>
+                          <p className="text-[13px] font-bold text-gray-800 leading-snug line-clamp-2">{article.title[lang]}</p>
                           <p className="text-[11px] text-gray-400 mt-1">{article.source[lang]} · {article.timeAgo[lang]}</p>
                         </div>
                       </button>)}
