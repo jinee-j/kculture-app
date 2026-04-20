@@ -3636,50 +3636,34 @@ export const ContentFeed = ({
       }} className="fixed inset-0 z-[100] bg-[#f7f7f8] flex flex-col max-w-[480px] mx-auto">
             {/* Search Header */}
             <div className="bg-white shrink-0">
-              <div className="flex items-center gap-3 px-4 pt-4 pb-3">
-                <motion.div initial={{
-              scale: 0.97,
-              opacity: 0
-            }} animate={{
-              scale: 1,
-              opacity: 1
-            }} transition={{
-              duration: 0.15,
-              delay: 0.05
-            }} className="flex-1 flex items-center bg-gray-100 rounded-2xl px-4 py-3 gap-2.5 border border-transparent focus-within:border-pink-300 focus-within:bg-white transition-all">
-                  <Search size={16} className="text-gray-400 shrink-0" />
-                  <input ref={searchInputRef} type="text" value={searchQuery} onChange={e => {
-                setSearchQuery(e.target.value);
-                setSearchView(e.target.value.trim() ? 'results' : 'discovery');
-              }} placeholder={t(lang, 'searchPlaceholder')} className="flex-1 bg-transparent text-[14px] text-gray-900 outline-none placeholder:text-gray-400 font-medium" />
-                  <AnimatePresence>
-                    {searchQuery && <motion.button initial={{
-                  opacity: 0,
-                  scale: 0.7
-                }} animate={{
-                  opacity: 1,
-                  scale: 1
-                }} exit={{
-                  opacity: 0,
-                  scale: 0.7
-                }} transition={{
-                  duration: 0.1
-                }} onClick={() => {
+              <div className="flex items-center gap-2 px-3 pt-4 pb-3">
+                {/* 뒤로가기 */}
+                <button onClick={() => {
+                  setOverlay(null);
                   setSearchQuery('');
                   setSearchView('discovery');
-                }} className="w-5 h-5 bg-gray-300 rounded-full flex items-center justify-center hover:bg-gray-400 transition-colors shrink-0"></motion.button>}
+                }} className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors shrink-0">
+                  <ArrowLeft size={20} className="text-gray-700" />
+                </button>
+                {/* 검색 인풋 */}
+                <motion.div initial={{ scale: 0.97, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.15, delay: 0.05 }} className="flex-1 flex items-center bg-gray-100 rounded-2xl px-4 py-2.5 gap-2.5 border border-transparent focus-within:border-pink-300 focus-within:bg-white transition-all">
+                  <input ref={searchInputRef} type="text" value={searchQuery} onChange={e => {
+                    setSearchQuery(e.target.value);
+                    setSearchView(e.target.value.trim() ? 'results' : 'discovery');
+                  }} placeholder={t(lang, 'searchPlaceholder')} className="flex-1 bg-transparent text-[14px] text-gray-900 outline-none placeholder:text-gray-400 font-medium" />
+                  <AnimatePresence>
+                    {searchQuery && <motion.button initial={{ opacity: 0, scale: 0.7 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.7 }} transition={{ duration: 0.1 }} onClick={() => {
+                      setSearchQuery('');
+                      setSearchView('discovery');
+                    }} className="w-5 h-5 bg-gray-300 rounded-full flex items-center justify-center hover:bg-gray-400 transition-colors shrink-0">
+                      <X size={11} className="text-white" />
+                    </motion.button>}
                   </AnimatePresence>
                 </motion.div>
-                <button onClick={() => {
-              if (searchView === 'results') {
-                setSearchQuery('');
-                setSearchView('discovery');
-              } else {
-                setOverlay(null);
-                setSearchQuery('');
-                setSearchView('discovery');
-              }
-            }} className="text-[13px] font-bold text-pink-500 shrink-0 px-1 py-1 hover:text-pink-600 transition-colors">{t(lang, 'back')}</button>
+                {/* 검색 실행 아이콘 */}
+                <button className="w-9 h-9 flex items-center justify-center rounded-full bg-pink-500 hover:bg-pink-600 transition-colors shrink-0">
+                  <Search size={17} className="text-white" />
+                </button>
               </div>
             </div>
 
