@@ -5054,8 +5054,9 @@ export const ContentFeed = ({
                   </div>
                   <p className="text-[14px] font-bold text-gray-800 leading-relaxed">{selectedThread.topicSummary[lang]}</p>
                 </div>
-                <div className="flex items-center gap-3 text-[12px] text-gray-400">
-                  <span className="flex items-center gap-1"><Heart size={13} /><span>{selectedThread.likeCount.toLocaleString()} {t(lang, 'likeBadge')}</span></span>
+                <div className="flex items-center gap-1.5 text-gray-400">
+                  <Heart size={14} className="text-pink-400" />
+                  <span className="text-[13px] font-semibold text-gray-500">{selectedThread.likeCount.toLocaleString()}</span>
                 </div>
               </div>
               <div className="bg-white mt-[1px] px-4 pt-4 pb-4">
