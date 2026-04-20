@@ -3576,25 +3576,23 @@ export const ContentFeed = ({
 
   // Scroll to top when entering article detail
   useEffect(() => {
-    if (selectedArticle && scrollContainerRef?.current) {
-      scrollContainerRef.current.scrollTop = 0;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0;
-        });
-      });
+    if (selectedArticle) {
+      const el = scrollContainerRef?.current;
+      if (el) el.scrollTop = 0;
+      const t1 = setTimeout(() => { if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0; }, 80);
+      const t2 = setTimeout(() => { if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0; }, 200);
+      return () => { clearTimeout(t1); clearTimeout(t2); };
     }
   }, [selectedArticle]);
 
   // Scroll to top when entering thread detail
   useEffect(() => {
-    if (selectedThread && scrollContainerRef?.current) {
-      scrollContainerRef.current.scrollTop = 0;
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0;
-        });
-      });
+    if (selectedThread) {
+      const el = scrollContainerRef?.current;
+      if (el) el.scrollTop = 0;
+      const t1 = setTimeout(() => { if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0; }, 80);
+      const t2 = setTimeout(() => { if (scrollContainerRef?.current) scrollContainerRef.current.scrollTop = 0; }, 200);
+      return () => { clearTimeout(t1); clearTimeout(t2); };
     }
   }, [selectedThread]);
 
