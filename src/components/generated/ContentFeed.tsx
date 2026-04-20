@@ -4363,7 +4363,7 @@ export const ContentFeed = ({
                         <div className="grid grid-cols-2 gap-3">
                           {gridItems.map(item => (
                             <button key={item.id} className="text-left group active:scale-[0.97] transition-transform">
-                              <div className="relative w-full h-[200px] rounded-2xl overflow-hidden mb-2 bg-gray-100">
+                              <div className="relative w-full h-[260px] rounded-2xl overflow-hidden mb-2 bg-gray-100">
                                 <img src={item.thumbnail} alt={item.title[lang]} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                                 <div className="absolute inset-0 flex items-center justify-center">
@@ -4554,10 +4554,6 @@ export const ContentFeed = ({
                     <Heart size={18} className={likedArticles.has(selectedArticle.id) ? 'fill-red-500' : ''} />
                     <span className="text-[13px] font-semibold">{selectedArticle.likes + (likedArticles.has(selectedArticle.id) ? 1 : 0)}</span>
                   </button>
-                  <div className="flex items-center gap-1.5 text-gray-400">
-                    <MessageCircle size={18} />
-                    <span className="text-[13px] font-semibold">{selectedArticle.comments}</span>
-                  </div>
                 </div>
                 <button onClick={() => toggleBookmark(selectedArticle.id)} className={`flex items-center gap-1.5 transition-colors ${bookmarkedArticles.has(selectedArticle.id) ? 'text-gray-800' : 'text-gray-400 hover:text-gray-600'}`}>
                   <Bookmark size={18} className={bookmarkedArticles.has(selectedArticle.id) ? 'fill-gray-800' : ''} />
