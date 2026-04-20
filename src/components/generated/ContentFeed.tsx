@@ -3679,7 +3679,7 @@ export const ContentFeed = ({
   });
   const filteredByChip = activeChip === 'all' ? ARTICLES : ARTICLES.filter(a => a.categoryKey === activeChip);
   const featuredInChip = filteredByChip.find(a => a.isFeatured) ?? filteredByChip[0];
-  const regularInChip = featuredInChip ? ARTICLES.filter(a => a.id !== featuredInChip.id) : [];
+  const regularInChip = featuredInChip ? ARTICLES.filter(a => a.id !== featuredInChip.id && (activeChip === 'all' || a.categoryKey === activeChip)) : [];
   const searchFilteredArticles = searchQuery.trim() ? ARTICLES.filter(a => a.title[lang].toLowerCase().includes(searchQuery.toLowerCase()) || a.category.toLowerCase().includes(searchQuery.toLowerCase())) : [];
   const searchFilteredThreads = searchQuery.trim() ? COMMUNITY_THREADS.filter(t => t.topicTitle[lang].toLowerCase().includes(searchQuery.toLowerCase()) || t.topicSummary[lang].toLowerCase().includes(searchQuery.toLowerCase()) || t.category.toLowerCase().includes(searchQuery.toLowerCase())) : [];
   const hasSearchResults = searchFilteredArticles.length > 0 || searchFilteredThreads.length > 0;
@@ -4465,7 +4465,7 @@ export const ContentFeed = ({
                         <div className="grid grid-cols-2 gap-3 items-start">
                           {gridItems.map(item => (
                             <button key={item.id} className="text-left group active:scale-[0.97] transition-transform w-full">
-                              <div className="relative w-full rounded-2xl overflow-hidden mb-2 bg-gray-100" style={{aspectRatio: '9/16', width: '100%'}}>
+                              <div className="relative w-full rounded-2xl overflow-hidden mb-2 bg-gray-100" style={{aspectRatio: '3/4'}}>
                                 <img src={item.thumbnail} alt={item.title[lang]} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                                 <div className="absolute inset-0 flex items-center justify-center">
