@@ -4465,7 +4465,7 @@ export const ContentFeed = ({
                         <div className="grid grid-cols-2 gap-3 items-start">
                           {gridItems.map(item => (
                             <button key={item.id} className="text-left group active:scale-[0.97] transition-transform w-full">
-                              <div className="relative w-full rounded-2xl overflow-hidden mb-2 bg-gray-100" style={{height: '200px'}}>
+                              <div className="relative w-full rounded-2xl overflow-hidden mb-2 bg-gray-100" style={{aspectRatio: '9/16', width: '100%'}}>
                                 <img src={item.thumbnail} alt={item.title[lang]} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                                 <div className="absolute inset-0 flex items-center justify-center">
