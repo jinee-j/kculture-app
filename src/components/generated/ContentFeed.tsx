@@ -3024,6 +3024,127 @@ const K_SHORTFORM_LIST: KShortformItem[] = [{
   duration: '4:32',
   category: 'K-BEAUTY',
   categoryColor: 'bg-rose-400'
+}, {
+  id: 'sf6',
+  title: { ko: '뉴진스 컴백 무대 최초 공개! 팬들 반응 폭발', en: 'NewJeans comeback stage premiere! Fan reactions explode', ja: 'NewJeansカムバックステージ初公開！ファン反応爆発', vi: 'Sân khấu comeback NewJeans lần đầu công bố! Fan phản ứng mạnh' },
+  channel: 'Kpop Diary',
+  channelLogo: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=80&h=80&fit=crop',
+  views: { ko: '18.7만', en: '187K', ja: '18.7万', vi: '187K' },
+  timeAgo: { ko: '30분 전', en: '30m ago', ja: '30分前', vi: '30 phút trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=400&h=600&fit=crop',
+  duration: '3:21',
+  category: 'K-POP',
+  categoryColor: 'bg-pink-500'
+}, {
+  id: 'sf7',
+  title: { ko: '오징어게임 시즌3 제작발표회 현장 중계', en: 'Squid Game Season 3 production press conference live', ja: 'イカゲームシーズン3制作発表会現場中継', vi: 'Trực tiếp họp báo sản xuất Squid Game Season 3' },
+  channel: 'K드라마TV',
+  channelLogo: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=80&h=80&fit=crop',
+  views: { ko: '22.1만', en: '221K', ja: '22.1万', vi: '221K' },
+  timeAgo: { ko: '2시간 전', en: '2h ago', ja: '2時間前', vi: '2 giờ trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=600&fit=crop',
+  duration: '7:04',
+  category: 'K-DRAMA',
+  categoryColor: 'bg-violet-500'
+}, {
+  id: 'sf8',
+  title: { ko: '눈물의 여왕 OST 비하인드… 김수현 직접 불렀다?', en: 'Queen of Tears OST behind the scenes… Kim Soo-hyun sang it?', ja: '涙の女王OST裏話…キム・スヒョン本人が歌った？', vi: 'Hậu trường OST Queen of Tears… Kim Soo-hyun tự hát?' },
+  channel: '드라마인사이드',
+  channelLogo: 'https://images.unsplash.com/photo-1574267432553-4b4628081c31?w=80&h=80&fit=crop',
+  views: { ko: '8.4만', en: '84K', ja: '8.4万', vi: '84K' },
+  timeAgo: { ko: '5시간 전', en: '5h ago', ja: '5時間前', vi: '5 giờ trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1574267432553-4b4628081c31?w=400&h=600&fit=crop',
+  duration: '5:18',
+  category: 'K-DRAMA',
+  categoryColor: 'bg-violet-500'
+}, {
+  id: 'sf9',
+  title: { ko: '무빙 시즌2 티저 최초 공개! 유아인 복귀하나', en: 'Moving Season 2 teaser premiere! Yoo Ah-in returning?', ja: 'Moving シーズン2ティーザー初公開！ユ・アイン復帰か', vi: 'Teaser Moving Season 2 lần đầu! Yoo Ah-in trở lại?' },
+  channel: 'KdramaClip',
+  channelLogo: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=80&h=80&fit=crop',
+  views: { ko: '11.2만', en: '112K', ja: '11.2万', vi: '112K' },
+  timeAgo: { ko: '7시간 전', en: '7h ago', ja: '7時間前', vi: '7 giờ trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=400&h=600&fit=crop',
+  duration: '4:45',
+  category: 'K-DRAMA',
+  categoryColor: 'bg-violet-500'
+}, {
+  id: 'sf10',
+  title: { ko: '한국식 삼겹살 파티 세계로… 외국인 반응 모음', en: 'Korean samgyeopsal party goes global… foreigner reactions', ja: '韓国式サムギョプサルパーティーが世界へ…外国人の反応まとめ', vi: 'Tiệc samgyeopsal Hàn Quốc ra thế giới… phản ứng người nước ngoài' },
+  channel: '한식TV',
+  channelLogo: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=80&h=80&fit=crop',
+  views: { ko: '7.3만', en: '73K', ja: '7.3万', vi: '73K' },
+  timeAgo: { ko: '3시간 전', en: '3h ago', ja: '3時間前', vi: '3 giờ trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=400&h=600&fit=crop',
+  duration: '6:02',
+  category: 'K-FOOD',
+  categoryColor: 'bg-orange-400'
+}, {
+  id: 'sf11',
+  title: { ko: '편의점 K-푸드 챌린지! 불닭·떡볶이·김밥 먹방', en: 'Convenience store K-Food challenge! Buldak·Tteokbokki·Gimbap mukbang', ja: 'コンビニK-フードチャレンジ！プルダック・トッポッキ・キンパ食べ歩き', vi: 'Thử thách K-Food cửa hàng tiện lợi! Buldak·Tteokbokki·Gimbap mukbang' },
+  channel: 'K먹방채널',
+  channelLogo: 'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=80&h=80&fit=crop',
+  views: { ko: '14.5만', en: '145K', ja: '14.5万', vi: '145K' },
+  timeAgo: { ko: '4시간 전', en: '4h ago', ja: '4時間前', vi: '4 giờ trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1498654896293-37aacf113fd9?w=400&h=600&fit=crop',
+  duration: '8:33',
+  category: 'K-FOOD',
+  categoryColor: 'bg-orange-400'
+}, {
+  id: 'sf12',
+  title: { ko: '미슐랭 셰프가 인정한 K-푸드 레시피 TOP 5', en: 'Michelin chef-approved K-Food recipes TOP 5', ja: 'ミシュランシェフ認定K-フードレシピTOP5', vi: 'TOP 5 công thức K-Food được đầu bếp Michelin công nhận' },
+  channel: '코리안쿡',
+  channelLogo: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=80&h=80&fit=crop',
+  views: { ko: '9.6만', en: '96K', ja: '9.6万', vi: '96K' },
+  timeAgo: { ko: '9시간 전', en: '9h ago', ja: '9時間前', vi: '9 giờ trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=600&fit=crop',
+  duration: '5:50',
+  category: 'K-FOOD',
+  categoryColor: 'bg-orange-400'
+}, {
+  id: 'sf13',
+  title: { ko: '라면 하나로 세계 정복… 신라면 글로벌 공장 탐방', en: 'Conquering the world with one ramen… Shin Ramen global factory tour', ja: 'ラーメン一つで世界征服…辛ラーメングローバル工場見学', vi: 'Chinh phục thế giới với một gói mì… tham quan nhà máy toàn cầu Shin Ramen' },
+  channel: '푸드다큐',
+  channelLogo: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=80&h=80&fit=crop',
+  views: { ko: '6.8만', en: '68K', ja: '6.8万', vi: '68K' },
+  timeAgo: { ko: '11시간 전', en: '11h ago', ja: '11時間前', vi: '11 giờ trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&h=600&fit=crop',
+  duration: '9:15',
+  category: 'K-FOOD',
+  categoryColor: 'bg-orange-400'
+}, {
+  id: 'sf14',
+  title: { ko: 'K-뷰티 입문자를 위한 기초 스킨케어 루틴 완벽 정리', en: 'Complete beginner K-Beauty basic skincare routine guide', ja: 'K-ビューティー初心者のための基礎スキンケアルーティン完全まとめ', vi: 'Hướng dẫn hoàn chỉnh skincare cơ bản K-Beauty cho người mới' },
+  channel: 'K뷰티채널',
+  channelLogo: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=80&h=80&fit=crop',
+  views: { ko: '13.2만', en: '132K', ja: '13.2万', vi: '132K' },
+  timeAgo: { ko: '8시간 전', en: '8h ago', ja: '8時間前', vi: '8 giờ trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=600&fit=crop',
+  duration: '6:44',
+  category: 'K-BEAUTY',
+  categoryColor: 'bg-rose-400'
+}, {
+  id: 'sf15',
+  title: { ko: '올리브영 하울 2024 여름 신상 총정리', en: 'Olive Young haul 2024 summer new arrivals roundup', ja: 'オリーブヤングハウル2024夏新作総まとめ', vi: 'Haul Olive Young tổng hợp hàng mới hè 2024' },
+  channel: '뷰티인사이드',
+  channelLogo: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=80&h=80&fit=crop',
+  views: { ko: '4.9만', en: '49K', ja: '4.9万', vi: '49K' },
+  timeAgo: { ko: '13시간 전', en: '13h ago', ja: '13時間前', vi: '13 giờ trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&h=600&fit=crop',
+  duration: '7:20',
+  category: 'K-BEAUTY',
+  categoryColor: 'bg-rose-400'
+}, {
+  id: 'sf16',
+  title: { ko: '아이돌이 쓰는 메이크업 따라하기… 르세라핌 스타일', en: 'Copying idol makeup… LE SSERAFIM style', ja: 'アイドルのメイクをマネする…ルセラフィムスタイル', vi: 'Bắt chước makeup idol… phong cách LE SSERAFIM' },
+  channel: '글로우업TV',
+  channelLogo: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=80&h=80&fit=crop',
+  views: { ko: '16.3만', en: '163K', ja: '16.3万', vi: '163K' },
+  timeAgo: { ko: '2시간 전', en: '2h ago', ja: '2時間前', vi: '2 giờ trước' },
+  thumbnail: 'https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?w=400&h=600&fit=crop',
+  duration: '5:55',
+  category: 'K-BEAUTY',
+  categoryColor: 'bg-rose-400'
 }];
 
 // --- Featured Banner Data ---
@@ -4348,17 +4469,11 @@ export const ContentFeed = ({
                     const chipLabel = chip ? chip.label[lang] : activeChip;
                     return (
                       <div className="bg-white mb-2 px-4 pt-5 pb-4">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[16px] leading-none">🎬</span>
-                            <h2 className="text-[15px] font-black text-gray-900">
-                              {lang === 'ko' ? `${chipLabel} 숏폼` : lang === 'ja' ? `${chipLabel} ショート` : lang === 'vi' ? `${chipLabel} Shorts` : `${chipLabel} Shorts`}
-                            </h2>
-                          </div>
-                          <button onClick={() => setHotGridSeed(s => s + 1)} className="flex items-center gap-1 text-[11px] font-bold text-gray-400 hover:text-pink-500 transition-colors px-2 py-1 rounded-full hover:bg-pink-50">
-                            <RefreshCw size={12} />
-                            <span>{lang === 'ko' ? '새로고침' : lang === 'ja' ? '更新' : lang === 'vi' ? 'Làm mới' : 'Refresh'}</span>
-                          </button>
+                        <div className="flex items-center gap-2 mb-3">
+                          <span className="text-[16px] leading-none">🎬</span>
+                          <h2 className="text-[15px] font-black text-gray-900">
+                            {lang === 'ko' ? `${chipLabel} 숏폼` : lang === 'ja' ? `${chipLabel} ショート` : lang === 'vi' ? `${chipLabel} Shorts` : `${chipLabel} Shorts`}
+                          </h2>
                         </div>
                         <div className="grid grid-cols-2 gap-3">
                           {gridItems.map(item => (
@@ -4390,6 +4505,13 @@ export const ContentFeed = ({
                               </div>
                             </button>
                           ))}
+                        </div>
+                        {/* 새로고침 버튼 — 그리드 아래 가운데 */}
+                        <div className="flex justify-center mt-4">
+                          <button onClick={() => setHotGridSeed(s => s + 1)} className="flex items-center gap-1.5 text-[12px] font-bold text-gray-400 hover:text-pink-500 transition-colors px-4 py-2 rounded-full border border-gray-200 hover:border-pink-300 bg-white hover:bg-pink-50">
+                            <RefreshCw size={13} />
+                            <span>{lang === 'ko' ? '다른 숏폼 보기' : lang === 'ja' ? '他のショートを見る' : lang === 'vi' ? 'Xem shorts khác' : 'See other shorts'}</span>
+                          </button>
                         </div>
                       </div>
                     );
