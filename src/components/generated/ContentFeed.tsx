@@ -4332,23 +4332,27 @@ export const ContentFeed = ({
                       </div>
                     </article>}
 
-                  {/* ── 카테고리별 이번 주 핫한 기사 2×2 그리드 ── */}
+                  {/* ── 카테고리별 숏폼 2×2 그리드 ── */}
                   {activeChip !== 'all' && (() => {
-                    const pool = ARTICLES.filter(a => a.id !== featuredInChip?.id && a.categoryKey === activeChip);
+                    const chipCategoryMap: Record<string, string> = { kpop: 'K-POP', kdrama: 'K-DRAMA', kfood: 'K-FOOD', kbeauty: 'K-BEAUTY' };
+                    const sfCategory = chipCategoryMap[activeChip];
+                    const pool = K_SHORTFORM_LIST.filter(s => s.category === sfCategory);
                     const shuffled = [...pool].sort((a, b) => {
-                      const hashA = (a.id.charCodeAt(0) * 31 + hotGridSeed * 17) % 97;
-                      const hashB = (b.id.charCodeAt(0) * 31 + hotGridSeed * 17) % 97;
+                      const hashA = (a.id.charCodeAt(a.id.length - 1) * 31 + hotGridSeed * 17) % 97;
+                      const hashB = (b.id.charCodeAt(b.id.length - 1) * 31 + hotGridSeed * 17) % 97;
                       return hashA - hashB;
                     });
-                    const gridArticles = shuffled.slice(0, 4);
-                    if (gridArticles.length === 0) return null;
+                    const gridItems = shuffled.slice(0, 4);
+                    if (gridItems.length === 0) return null;
+                    const chip = CATEGORY_CHIPS.find(c => c.id === activeChip);
+                    const chipLabel = chip ? chip.label[lang] : activeChip;
                     return (
                       <div className="bg-white mb-2 px-4 pt-5 pb-4">
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center gap-2">
-                            <Flame size={16} className="text-red-500" />
+                            <span className="text-[16px] leading-none">🎬</span>
                             <h2 className="text-[15px] font-black text-gray-900">
-  {(() => { const chip = CATEGORY_CHIPS.find(c => c.id === activeChip); const label = chip ? chip.label[lang] : activeChip; return lang === 'ko' ? `이번 주 핫한 ${label}` : lang === 'ja' ? `今週のホット ${label}` : lang === 'vi' ? `Hot tuần này: ${label}` : `Hot This Week: ${label}`; })()}
+                              {lang === 'ko' ? `${chipLabel} 숏폼` : lang === 'ja' ? `${chipLabel} ショート` : lang === 'vi' ? `${chipLabel} Shorts` : `${chipLabel} Shorts`}
                             </h2>
                           </div>
                           <button onClick={() => setHotGridSeed(s => s + 1)} className="flex items-center gap-1 text-[11px] font-bold text-gray-400 hover:text-pink-500 transition-colors px-2 py-1 rounded-full hover:bg-pink-50">
@@ -4357,14 +4361,21 @@ export const ContentFeed = ({
                           </button>
                         </div>
                         <div className="grid grid-cols-2 gap-2.5">
-                          {gridArticles.map(article => (
-                            <button key={article.id} onClick={() => setSelectedArticle(article)} className="text-left rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 hover:shadow-md transition-all active:scale-[0.97]">
-                              <figure className="w-full h-[100px] overflow-hidden bg-gray-200">
-                                <img src={article.image} alt={article.title[lang]} className="w-full h-full object-cover" />
-                              </figure>
+                          {gridItems.map(item => (
+                            <button key={item.id} className="text-left rounded-2xl overflow-hidden bg-gray-100 active:scale-[0.97] transition-transform group">
+                              <div className="relative w-full h-[140px] overflow-hidden">
+                                <img src={item.thumbnail} alt={item.title[lang]} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                  <div className="w-9 h-9 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/40">
+                                    <Play size={14} className="text-white fill-white ml-0.5" />
+                                  </div>
+                                </div>
+                                <div className="absolute bottom-2 right-2 bg-black/70 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-md">{item.duration}</div>
+                              </div>
                               <div className="px-2.5 py-2">
-                                <p className="text-[12px] font-bold text-gray-900 leading-snug line-clamp-2 mb-1">{article.title[lang]}</p>
-                                <p className="text-[10px] text-gray-400">{article.source[lang]} · {article.timeAgo[lang]}</p>
+                                <p className="text-[12px] font-bold text-gray-900 leading-snug line-clamp-2 mb-1">{item.title[lang]}</p>
+                                <p className="text-[10px] text-gray-400">{item.channel} · {item.views[lang]}</p>
                               </div>
                             </button>
                           ))}
