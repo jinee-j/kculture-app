@@ -3689,7 +3689,7 @@ export const ContentFeed = ({
                 <div className="w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center mb-4">
                   <Search size={24} className="text-gray-300" />
                 </div>
-                <p className="text-[15px] font-bold text-gray-400">화면 준비중입니다</p>
+                <p className="text-[15px] font-bold text-gray-400">{lang === 'ko' ? '화면 준비중입니다' : lang === 'ja' ? '画面準備中です' : lang === 'vi' ? 'Màn hình đang được chuẩn bị' : 'Coming soon'}</p>
               </div>
               <AnimatePresence mode="wait">
                 {false ? <motion.div key="results" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}>
