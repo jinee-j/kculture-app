@@ -4462,11 +4462,11 @@ export const ContentFeed = ({
                             {lang === 'ko' ? `${chipLabel} 숏폼` : lang === 'ja' ? `${chipLabel} ショート` : lang === 'vi' ? `${chipLabel} Shorts` : `${chipLabel} Shorts`}
                           </h2>
                         </div>
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-2 gap-3 items-start">
                           {gridItems.map(item => (
-                            <button key={item.id} className="text-left group active:scale-[0.97] transition-transform" style={{minHeight: '230px'}}>
-                              <div className="relative w-full rounded-2xl overflow-hidden mb-2 bg-gray-100" style={{height: '160px'}}>
-                                <img src={item.thumbnail} alt={item.title[lang]} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                            <button key={item.id} className="text-left group active:scale-[0.97] transition-transform w-full">
+                              <div className="relative w-full rounded-2xl overflow-hidden mb-2 bg-gray-100" style={{height: '200px'}}>
+                                <img src={item.thumbnail} alt={item.title[lang]} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                                 <div className="absolute inset-0 flex items-center justify-center">
                                   <div className="w-10 h-10 bg-white/25 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/40">
