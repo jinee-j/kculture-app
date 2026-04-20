@@ -4334,7 +4334,7 @@ export const ContentFeed = ({
 
                   {/* ── 카테고리별 이번 주 핫한 기사 2×2 그리드 ── */}
                   {activeChip !== 'all' && (() => {
-                    const pool = ARTICLES.filter(a => a.id !== featuredInChip?.id && a.category === activeChip);
+                    const pool = ARTICLES.filter(a => a.id !== featuredInChip?.id && a.categoryKey === activeChip);
                     const shuffled = [...pool].sort((a, b) => {
                       const hashA = (a.id.charCodeAt(0) * 31 + hotGridSeed * 17) % 97;
                       const hashB = (b.id.charCodeAt(0) * 31 + hotGridSeed * 17) % 97;
@@ -4348,7 +4348,7 @@ export const ContentFeed = ({
                           <div className="flex items-center gap-2">
                             <Flame size={16} className="text-red-500" />
                             <h2 className="text-[15px] font-black text-gray-900">
-                              {lang === 'ko' ? `이번 주 핫한 ${activeChip}` : lang === 'ja' ? `今週のホット ${activeChip}` : lang === 'vi' ? `Hot tuần này: ${activeChip}` : `Hot This Week: ${activeChip}`}
+  {(() => { const chip = CATEGORY_CHIPS.find(c => c.id === activeChip); const label = chip ? chip.label[lang] : activeChip; return lang === 'ko' ? `이번 주 핫한 ${label}` : lang === 'ja' ? `今週のホット ${label}` : lang === 'vi' ? `Hot tuần này: ${label}` : `Hot This Week: ${label}`; })()}
                             </h2>
                           </div>
                           <button onClick={() => setHotGridSeed(s => s + 1)} className="flex items-center gap-1 text-[11px] font-bold text-gray-400 hover:text-pink-500 transition-colors px-2 py-1 rounded-full hover:bg-pink-50">
