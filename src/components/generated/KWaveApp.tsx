@@ -11,7 +11,7 @@ export const KWaveApp = ({
   initialArticleId
 }: KWaveAppProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  return <div className="flex flex-col min-h-screen bg-[#f7f7f8]" style={{
+  return <div className="flex flex-col h-screen bg-[#f7f7f8]" style={{
     overscrollBehavior: 'contain'
   }}>
       {/* Back bar — only shown when launched from Yahoo portal */}
