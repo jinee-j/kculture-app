@@ -3419,6 +3419,25 @@ const REACTION_CATEGORIES: ReactionCategory[] = [{
 function t(lang: Lang, key: string): string {
   return I18N[lang]?.[key] ?? key;
 }
+function translateTimeAgo(timeAgo: string, lang: Lang): string {
+  if (lang === 'ko') return timeAgo;
+  const min = timeAgo.match(/(\d+)분 전/);
+  const hour = timeAgo.match(/(\d+)시간 전/);
+  const day = timeAgo.match(/(\d+)일 전/);
+  if (min) {
+    const n = min[1];
+    return lang === 'ja' ? `${n}分前` : lang === 'vi' ? `${n} phút trước` : `${n}m ago`;
+  }
+  if (hour) {
+    const n = hour[1];
+    return lang === 'ja' ? `${n}時間前` : lang === 'vi' ? `${n} giờ trước` : `${n}h ago`;
+  }
+  if (day) {
+    const n = day[1];
+    return lang === 'ja' ? `${n}日前` : lang === 'vi' ? `${n} ngày trước` : `${n}d ago`;
+  }
+  return timeAgo;
+}
 const BOTTOM_NAV_ITEMS: {
   id: Tab;
   icon: React.ReactNode;
@@ -4013,7 +4032,7 @@ export const ContentFeed = ({
                     </div>}
                   <div className="flex-1 min-w-0">
                     <p className="text-[13px] text-gray-800 leading-relaxed">{notif.message[lang]}</p>
-                    <span className="text-[11px] text-gray-400 mt-0.5 block">{notif.timeAgo}</span>
+                    <span className="text-[11px] text-gray-400 mt-0.5 block">{translateTimeAgo(notif.timeAgo, lang)}</span>
                   </div>
                   {!notif.isRead && <span className="w-2 h-2 bg-pink-500 rounded-full shrink-0 mt-1.5" />}
                 </div>)}
@@ -4812,7 +4831,7 @@ export const ContentFeed = ({
                             <div className="flex items-center gap-1.5 mb-1">
                               <span className="text-[12px] font-bold text-gray-800">{comment.user}</span>
                               <span className="text-[11px]">{comment.country}</span>
-                              <span className="text-[11px] text-gray-400 ml-auto">{comment.timeAgo}</span>
+                              <span className="text-[11px] text-gray-400 ml-auto">{translateTimeAgo(comment.timeAgo, lang)}</span>
                             </div>
                             <p className="text-[13px] text-gray-700 leading-relaxed">{comment.text[lang]}</p>
                             <div className="flex items-center gap-3 mt-2">
@@ -4844,7 +4863,7 @@ export const ContentFeed = ({
                                   <div className="flex items-center gap-1.5 mb-0.5">
                                     <span className="text-[11px] font-bold text-gray-800">{reply.user}</span>
                                     <span className="text-[10px]">{reply.country}</span>
-                                    <span className="text-[10px] text-gray-400 ml-auto">{reply.timeAgo}</span>
+                                    <span className="text-[10px] text-gray-400 ml-auto">{translateTimeAgo(reply.timeAgo, lang)}</span>
                                   </div>
                                   <p className="text-[12px] text-gray-600 leading-relaxed">{reply.text[lang]}</p>
                                   <button onClick={() => toggleLikeArticleComment(reply.id)} className={`flex items-center gap-1 mt-1.5 transition-colors ${likedArticleComments.has(reply.id) ? 'text-red-500' : 'text-gray-400 hover:text-red-400'}`}>
@@ -5117,7 +5136,7 @@ export const ContentFeed = ({
                           <div className="flex items-center gap-1.5 mb-1">
                             <span className="text-[12px] font-bold text-gray-800">{comment.user}</span>
                             <span className="text-[11px]">{comment.country}</span>
-                            <span className="text-[11px] text-gray-400 ml-auto">{comment.timeAgo}</span>
+                            <span className="text-[11px] text-gray-400 ml-auto">{translateTimeAgo(comment.timeAgo, lang)}</span>
                           </div>
                           <p className="text-[13px] text-gray-700 leading-relaxed">{comment.text[lang]}</p>
                           <div className="flex items-center gap-3 mt-2">
@@ -5149,7 +5168,7 @@ export const ContentFeed = ({
                                 <div className="flex items-center gap-1.5 mb-0.5">
                                   <span className="text-[11px] font-bold text-gray-800">{reply.user}</span>
                                   <span className="text-[10px]">{reply.country}</span>
-                                  <span className="text-[10px] text-gray-400 ml-auto">{reply.timeAgo}</span>
+                                  <span className="text-[10px] text-gray-400 ml-auto">{translateTimeAgo(reply.timeAgo, lang)}</span>
                                 </div>
                                 <p className="text-[12px] text-gray-600 leading-relaxed">{reply.text[lang]}</p>
                                 <button onClick={() => toggleLikeComment(reply.id)} className={`flex items-center gap-1 mt-1.5 transition-colors ${likedComments.has(reply.id) ? 'text-red-500' : 'text-gray-400 hover:text-red-400'}`}>
@@ -5289,7 +5308,7 @@ export const ContentFeed = ({
                       {MY_ACTIVITY.map(item => <div key={item.id} className="bg-white rounded-2xl p-4 shadow-sm border border-gray-50">
                           <div className="flex items-center gap-2 mb-2.5">
                             <span className={`${item.articleCategoryColor} text-white text-[9px] font-black px-2 py-0.5 rounded-full`}>{item.articleCategory}</span>
-                            <span className="text-[11px] text-gray-400">{item.timeAgo}</span>
+                            <span className="text-[11px] text-gray-400">{translateTimeAgo(item.timeAgo, lang)}</span>
                             <span className="ml-auto">
                               {item.type === 'comment' ? <MessageCircle size={13} className="text-blue-400" /> : <Heart size={13} className="text-red-400 fill-red-400" />}
                             </span>
